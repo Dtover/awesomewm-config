@@ -66,9 +66,9 @@ theme.fonts = {
 	keychain = "sans bold 14", -- key sequence tip font
 	titlebar = "sans bold 12", -- client titlebar font
 	hotkeys = {
-		main  = "sans 12",      -- hotkeys helper main font
-		key   = "mono 12",      -- hotkeys helper key font (use monospace for align)
-		title = "sans bold 14", -- hotkeys helper group title font
+		main  = "sans 10",      -- hotkeys helper main font
+		key   = "mono 10",      -- hotkeys helper key font (use monospace for align)
+		title = "sans bold 12", -- hotkeys helper group title font
 	},
 	player   = {
 		main = "sans bold 12", -- player widget main font

@@ -4,8 +4,8 @@
 
 -- Configuration file selection
 -----------------------------------------------------------------------------------------------------------------------
-local rc = "colorless.rc-colorless"
-
+--local rc = "colorless.rc-colorless"
+local rc = "color.white.rc-white"
 --local rc = "color.red.rc-red"
 --local rc = "color.blue.rc-blue"
 --local rc = "color.orange.rc-orange"

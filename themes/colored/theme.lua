@@ -32,9 +32,9 @@ theme.fonts = {
 	tiny     = "Roboto bold 10", -- smallest font for widgets
 	titlebar = "Roboto bold 13", -- client titlebar font
 	hotkeys  = {
-		main  = "Roboto 14",             -- hotkeys helper main font
-		key   = "Iosevka Term Light 14", -- hotkeys helper key font (use monospace for align)
-		title = "Roboto bold 16",        -- hotkeys helper group title font
+		main  = "Roboto 12",             -- hotkeys helper main font
+		key   = "Iosevka Term Light 12", -- hotkeys helper key font (use monospace for align)
+		title = "Roboto bold 14",        -- hotkeys helper group title font
 	},
 	player   = {
 		main = "Play bold 13", -- player widget main font
@@ -193,7 +193,7 @@ function theme:update()
 
 	-- Hotkeys helper
 	------------------------------------------------------------
-	self.float.hotkeys.geometry = { width = 1800 }
+	self.float.hotkeys.geometry = { width = 1800, height = 1100 }
 	self.float.hotkeys.heights = { key = 26, title = 32 }
 
 	-- Key sequence tip
