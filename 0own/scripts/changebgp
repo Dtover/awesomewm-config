@@ -1,0 +1,3 @@
+#!/bin/bash
+path=~/Pictures/BG_images/
+sxiv -N bgp -t ${path}/* &
