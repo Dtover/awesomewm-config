@@ -13,7 +13,7 @@ local autostart = {}
 --------------------------------------------------------------------------------
 function autostart.run()
 	-- environment
-	awful.spawn.with_shell("bash /home/dtover/.config/awesome/AutoRunScript.sh")
+	awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/AutoRunScript.sh")
 
 	-- utils
 	--awful.spawn.with_shell("compton")
