@@ -26,7 +26,7 @@ require("colorless.ercheck-config") -- load file with error handling
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
 local env = require("colorless.env-config") -- load file with environment
-env:init({ theme = "colored" })
+env:init({ theme = "black" })
 
 -- Layouts setup
 -----------------------------------------------------------------------------------------------------------------------
@@ -48,6 +48,9 @@ local separator = redflat.gauge.separator.vertical()
 -- Tasklist
 -----------------------------------------------------------------------------------------------------------------------
 local tasklist = {}
+
+-- load list of app name aliases from files and set it as part of tasklist theme
+tasklist.style = { appnames = require("color.black.alias-config")}
 
 tasklist.buttons = awful.util.table.join(
 	awful.button({}, 1, redflat.widget.tasklist.action.select),
@@ -114,6 +117,16 @@ tray.buttons = awful.util.table.join(
 local volume = {}
 volume.widget = redflat.widget.pulse(nil, { widget = redflat.gauge.audio.blue.new })
 
+-- activate player widget
+redflat.float.player:init({ name = env.player })
+
+volume.buttons = awful.util.table.join(
+	awful.button({}, 4, function() volume.widget:change_volume()                end),
+	awful.button({}, 5, function() volume.widget:change_volume({ down = true }) end),
+	awful.button({}, 1, function() volume.widget:mute()                         end),
+	awful.button({}, 3, function() redflat.float.player:show()                  end)
+)
+
 -- System resource monitoring widgets
 --------------------------------------------------------------------------------
 local sysmon = { widget = {}, buttons = {} }
@@ -121,7 +134,7 @@ local sysmon = { widget = {}, buttons = {} }
 -- CPU usage
 sysmon.widget.cpu = redflat.widget.sysmon(
 	{ func = redflat.system.pformatted.cpu(80) },
-	{ timeout = 2, widget = redflat.gauge.monitor.circle }
+	{ timeout = 2, widget = redflat.gauge.monitor.dash }
 )
 
 sysmon.buttons.cpu = awful.util.table.join(
@@ -130,8 +143,8 @@ sysmon.buttons.cpu = awful.util.table.join(
 
 -- RAM usage
 sysmon.widget.ram = redflat.widget.sysmon(
-	{ func = redflat.system.pformatted.mem(80) },
-	{ timeout = 10, widget = redflat.gauge.monitor.circle }
+	{ func = redflat.system.pformatted.mem(70) },
+	{ timeout = 10, widget = redflat.gauge.monitor.dash }
 )
 
 sysmon.buttons.ram = awful.util.table.join(
@@ -139,9 +152,9 @@ sysmon.buttons.ram = awful.util.table.join(
 )
 
 -- battery
-sysmon.widget.battery = redflat.widget.sysmon(
+sysmon.widget.battery = redflat.widget.battery(
 	{ func = redflat.system.pformatted.bat(25), arg = "BAT0" },
-	{ timeout = 60, widget = redflat.gauge.monitor.circle }
+	{ timeout = 60, widget = redflat.gauge.monitor.dash }
 )
 
 -- Screen setup
@@ -166,7 +179,7 @@ awful.screen.connect_for_each_screen(
 		)
 
 		-- tasklist widget
-		tasklist[s] = redflat.widget.tasklist({ screen = s, buttons = tasklist.buttons })
+		tasklist[s] = redflat.widget.tasklist({ screen = s, buttons = tasklist.buttons }, tasklist.style)
 
 		-- panel wibox
 		s.panel = awful.wibar({ position = "bottom", screen = s, height = beautiful.panel_height or 36 })
@@ -193,8 +206,8 @@ awful.screen.connect_for_each_screen(
 			},
 			{ -- right widgets
 				layout = wibox.layout.fixed.horizontal,
-				--separator,
-				--env.wrapper(volume.widget, "volume", volume.buttons),
+				separator,
+				env.wrapper(volume.widget, "volume", volume.buttons),
 				separator,
 				env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
 				env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
