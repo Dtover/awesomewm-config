@@ -261,13 +261,13 @@ local function new_task(c_group, style)
 	task.group = c_group
 	task.l     = wibox.container.margin(task.widg, unpack(style.task_margin))
 
-	task.widg:connect_signal("mouse::enter", function() redtasklist.tasktip:show(task.group) end)
-	task.widg:connect_signal("mouse::leave",
-		function()
-			redtasklist.tasktip.hidetimer:start()
-			if not redtasklist.winmenu.menu.hidetimer.started then redtasklist.winmenu.menu.hidetimer:start() end
-		end
-	)
+	--task.widg:connect_signal("mouse::enter", function() redtasklist.tasktip:show(task.group) end)
+	--task.widg:connect_signal("mouse::leave",
+		--function()
+			--redtasklist.tasktip.hidetimer:start()
+			--if not redtasklist.winmenu.menu.hidetimer.started then redtasklist.winmenu.menu.hidetimer:start() end
+		--end
+	--)
 	return task
 end
 

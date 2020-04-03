@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                   Blue theme                                                      --
+--                                                   Black theme                                                      --
 -----------------------------------------------------------------------------------------------------------------------
 local awful = require("awful")
 
@@ -10,8 +10,9 @@ local theme = require("themes/ruby/theme")
 
 -- Color scheme
 -----------------------------------------------------------------------------------------------------------------------
-theme.color.main   = "#325986"
-theme.color.urgent = "#161514"
+theme.color.main   = "#A83C3C"
+theme.color.urgent = "#877B83"
+theme.color.border = "#A83C3C"
 
 
 -- Common
@@ -123,8 +124,9 @@ theme.widget.wrapper = {
 
 -- Various widgets style tuning
 ------------------------------------------------------------
-theme.widget.tasklist.char_digit = 5
-theme.widget.tasklist.task = theme.gauge.task.blue
+theme.widget.tasklist.char_digit = 6
+theme.widget.tasklist.width = 100
+theme.widget.tasklist.task = theme.gauge.task.init
 
 -- End
 -----------------------------------------------------------------------------------------------------------------------

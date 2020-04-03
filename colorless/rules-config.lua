@@ -60,8 +60,11 @@ function rules:init(args)
 			except_any = { class = "netease-cloud-music" },
 			properties = { titlebars_enabled = true }
 		},
-		{ 	rule = { class = "chrome" },
-			properties = { screen = 1, tag = "Tag2" }
+		{ 	rule = { class = "Google-chrome" },
+			properties = { screen = 1, tag = "Tag2", switchtotag = true }
+	    },
+		{ 	rule = { class = "Brave-browser" },
+			properties = { screen = 1, tag = "Tag3" }
 	    },
 		{ 	rule = { class = "netease-cloud-music" },
 			properties = { titlebars_enabled = false, screen = 1, tag = "Tag8" }

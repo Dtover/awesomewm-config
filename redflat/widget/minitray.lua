@@ -21,7 +21,7 @@ local beautiful = require("beautiful")
 
 local redutil = require("redflat.util")
 local dotcount = require("redflat.gauge.graph.dots")
-local tooltip = require("redflat.float.tooltip")
+--local tooltip = require("redflat.float.tooltip")
 
 -- Initialize tables and wibox
 -----------------------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ function minitray:init(style)
 
 	-- Create tooltip
 	--------------------------------------------------------------------------------
-	self.tp = tooltip({}, style.tooltip)
+	--self.tp = tooltip({}, style.tooltip)
 
 	-- Set tray
 	--------------------------------------------------------------------------------
@@ -150,14 +150,14 @@ function minitray.new(_, style)
 
 	-- Set tooltip
 	--------------------------------------------------------------------------------
-	minitray.tp:add_to_object(widg)
+	--minitray.tp:add_to_object(widg)
 
 	-- Set update timer
 	--------------------------------------------------------------------------------
 	function widg:update()
 		local appcount = awesome.systray()
 		self:set_num(appcount)
-		minitray.tp:set_text(appcount .. " apps")
+		--minitray.tp:set_text(appcount .. " apps")
 	end
 
 	minitray.tray:connect_signal('widget::redraw_needed', function() widg:update() end)

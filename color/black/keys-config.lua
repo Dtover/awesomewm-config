@@ -120,6 +120,10 @@ local function client_letterkey(i, mod, action)
 	)
 end
 
+local rb_corner = function()
+	return { x = screen[mouse.screen].workarea.x + screen[mouse.screen].workarea.width,
+	         y = screen[mouse.screen].workarea.y + screen[mouse.screen].workarea.height }
+end
 
 -- Build hotkeys depended on config parameters
 -----------------------------------------------------------------------------------------------------------------------
@@ -578,7 +582,10 @@ function hotkeys:init(args)
 			{}, "XF86AudioMute", volume_mute,
 			{ description = "Mute audio", group = "Volume control" }
 		},
-
+		{
+			{ env.mod }, "5", function() redflat.float.player:show(rb_corner()) end,
+			{ description = "Show player", group = "Volume control" }
+		}
 	}
 
 	-- Client keys

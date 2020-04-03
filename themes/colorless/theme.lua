@@ -1,4 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
+--r
 --                                                Colorless theme                                                    --
 -----------------------------------------------------------------------------------------------------------------------
 local awful = require("awful")
@@ -861,7 +862,7 @@ function theme:init()
 		title_height  = 48,                                -- height of title (promt and icon) area
 		prompt_height = 35,                                -- prompt line height
 		title_icon    = self.icon.system,                  -- widget icon
-		border_width  = 0,                                 -- widget border width
+		border_width  = 2,                                 -- widget border width
 		parser        = {},                                -- desktop file parser settings (see theme.service.dfparser)
 		field         = nil,                               -- redflat text field style(see theme.float.decoration.field)
 		shape         = nil,                               -- wibox shape
@@ -876,7 +877,7 @@ function theme:init()
 		keytip        = { geometry = { width = 400 } }, -- redflat key tip settings
 	}
 
-	-- Application swit`cher
+	-- Application switcher
 	------------------------------------------------------------
 	self.float.appswitcher = {
 		wibox_height    = 240, -- widget height
@@ -1070,13 +1071,14 @@ function theme:init()
 	-- Floating prompt
 	------------------------------------------------------------
 	self.float.prompt = {
-		geometry     = { width = 620, height = 120 }, -- widget size
-		border_width = 0,                             -- widget border width
-		margin       = { 20, 20, 40, 40 },            -- margins around widget content
+		geometry     = { width = 620, height = 70 }, -- widget size
+		border_width = 2,                             -- widget border width
+		margin       = { 20, 20, 15, 15 },            -- margins around widget content
 		field        = nil,                           -- redflat text field style (see theme.float.decoration.field)
 		shape        = nil,                           -- wibox shape
 		naughty      = {},                            -- awesome notification style
-		color        = self.color,                    -- colors (main used)
+		--color 		 = self.color
+		color 		 = { border = self.color.main, wibox = self.color.wibox }
 	}
 
 	-- Notify (redflat notification widget)

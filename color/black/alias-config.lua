@@ -30,6 +30,7 @@ appnames["Qemu-system-x86_64"  ] = "QEMU"
 appnames["Gpaste-ui"           ] = "PASTE"
 appnames["netease-cloud-music" ] = "MUSIC"
 appnames["Google-chrome"	   ] = "CHROME"
+appnames["Brave-browser"	   ] = "BRAVE"
 
 return appnames
 

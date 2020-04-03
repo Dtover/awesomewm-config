@@ -64,7 +64,7 @@ tasklist.buttons = awful.util.table.join(
 -----------------------------------------------------------------------------------------------------------------------
 local taglist = {}
 
-taglist.style = { widget = redflat.gauge.tag.ruby.new, show_tip = true }
+taglist.style = { widget = redflat.gauge.tag.ruby.new, show_tip = false}
 
 -- double line taglist
 taglist.cols_num = 4
