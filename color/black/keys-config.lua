@@ -285,6 +285,10 @@ function hotkeys:init(args)
 			{ description = "Run todo builder", group = "Run app" }
 		},
 		--{
+			--{}, "q", function() if client.focus then client.focus:kill() end end,
+			--{ description = "Kill focused client", group = "Kill application", keyset = { "q" } }
+		--},
+		--{
 			--{}, "a", function() awful.spawn(env.ssh) end,
 			--{ description = "Run ssh in st", group = "Run app" }
 		--}

@@ -11,7 +11,7 @@ local theme = require("themes/ruby/theme")
 -- Color scheme
 -----------------------------------------------------------------------------------------------------------------------
 theme.color.main   = "#325986"
-theme.color.urgent = "#B32601"
+theme.color.urgent = "#161514"
 
 
 -- Common
@@ -25,7 +25,8 @@ theme.wallpaper    = theme.path .. "/wallpaper/none.png"
 
 ---- Setup parent theme settings
 ----------------------------------------------------------------------------------
---theme:update()
+
+theme:update()
 
 
 ---- Desktop config
@@ -94,6 +95,14 @@ theme.wallpaper    = theme.path .. "/wallpaper/none.png"
 
 ---- Panel widgets
 ------------------------------------------------------------------------------------------------------------------------
+
+-- Audio
+theme.gauge.audio.blue.dash.plain = true
+theme.gauge.audio.blue.dash.bar.num = 8
+theme.gauge.audio.blue.dash.bar.width = 3
+theme.gauge.audio.blue.dmargin = { 10, 0, 9, 9 }
+theme.gauge.audio.blue.width = 86
+theme.gauge.audio.blue.icon = theme.path .. "/widget/audio.svg"
 
 -- individual margins for panel widgets
 --------------------------------------------------------------------------------
