@@ -168,7 +168,7 @@ awful.screen.connect_for_each_screen(
 
 		-- tags
 		--awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8" }, s, awful.layout.layouts[2])
-		awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8" }, s, layoutseq )
+		awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "TagQ", "TagW", "TagE", "TagR" }, s, layoutseq )
 
 		-- layoutbox widget
 		layoutbox[s] = redflat.widget.layoutbox({ screen = s })

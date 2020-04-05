@@ -125,6 +125,10 @@ local rb_corner = function()
 	         y = screen[mouse.screen].workarea.y + screen[mouse.screen].workarea.height }
 end
 
+local lock_command = function()
+    redflat.lock_screen.lock_screen_show()
+end
+
 -- Build hotkeys depended on config parameters
 -----------------------------------------------------------------------------------------------------------------------
 function hotkeys:init(args)
@@ -138,8 +142,8 @@ function hotkeys:init(args)
 
 	self.mouse.root = (awful.util.table.join(
 		awful.button({ }, 3, function () mainmenu:toggle() end),
-		awful.button({ }, 4, awful.tag.viewnext),
-		awful.button({ }, 5, awful.tag.viewprev)
+		awful.button({ }, 4, awful.tag.viewprev),
+		awful.button({ }, 5, awful.tag.viewnext)
 	))
 
 	-- volume functions

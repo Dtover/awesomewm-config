@@ -25,12 +25,12 @@ function env:init(args)
 	local theme = args.theme or "colorless"
 
 	-- environment vars
-	self.terminal = args.terminal or "termite"
+	self.terminal = args.terminal or "alacritty"
 	self.mod = args.mod or "Mod4"
 	self.home = os.getenv("HOME")
 	self.themedir = awful.util.get_configuration_dir() .. "themes/" .. theme
 	-- self program
-	self.scratchpad = args.terminal or "termite -t scratchpadd"
+	self.scratchpad = args.terminal or "alacritty -t scratchpadd"
 	self.fm = args.fm or "dolphin"
 	self.browser = args.browser or "google-chrome-stable"
 	self.brave = args.brave or "brave"

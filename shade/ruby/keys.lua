@@ -21,8 +21,6 @@ local laybox = redflat.widget.layoutbox
 local grid = redflat.layout.grid
 local redtip = redflat.float.hotkeys
 local redtitle = redflat.titlebar
---local numkeys_line = { "1", "2", "3", "4" }
---local tagkeys_line = { "q", "w", "e", "r" }
 
 -- Key support functions
 -----------------------------------------------------------------------------------------------------------------------

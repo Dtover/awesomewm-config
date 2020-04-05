@@ -67,7 +67,7 @@ function rules:init(args)
 			properties = { screen = 1, tag = "Tag3" }
 	    },
 		{ 	rule = { class = "netease-cloud-music" },
-			properties = { titlebars_enabled = false, screen = 1, tag = "Tag8" }
+			properties = { titlebars_enabled = false, screen = 1, tag = "TagR" }
 	    },
 		{ 	rule = { class = "Wine" },
 			properties = { titlebars_enabled = false, border_width = 0 }
@@ -85,23 +85,23 @@ function rules:init(args)
 		},
 		{
 			rule = { class = "Zathura" },
-			properties = { screen = 1, tag = "Tag6", switchtotag = true }
+			properties = { screen = 1, tag = "TagQ", switchtotag = true }
 		},
 		{
 			rule = { class = "Wpspdf" },
-			properties = { screen = 1, tag = "Tag7" }
+			properties = { screen = 1, tag = "TagW" }
 		},
 		{
 			rule = { class = "Wps" },
-			properties = { screen = 1, tag = "Tag7" }
+			properties = { screen = 1, tag = "TagW" }
 		},
 		{
 			rule = { class = "Wpp" },
-			properties = { screen = 1, tag = "Tag7" }
+			properties = { screen = 1, tag = "TagW" }
 		},
 		{
 			rule = { class = "Et" },
-			properties = { screen = 1, tag = "Tag7" }
+			properties = { screen = 1, tag = "TagW" }
 		},
 		{
 			rule = { class = "code" },

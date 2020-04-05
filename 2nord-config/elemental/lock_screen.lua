@@ -242,7 +242,7 @@ local function grab_password()
 end
 
 function lock_screen_show()
-    set_visibility(true) 
+    set_visibility(true)
     grab_password()
 end
 

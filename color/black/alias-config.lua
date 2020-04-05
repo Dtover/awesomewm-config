@@ -31,6 +31,7 @@ appnames["Gpaste-ui"           ] = "PASTE"
 appnames["netease-cloud-music" ] = "MUSIC"
 appnames["Google-chrome"	   ] = "CHROME"
 appnames["Brave-browser"	   ] = "BRAVE"
+appnames["Alacritty" 		   ] = "ALCRTY"
 
 return appnames
 
