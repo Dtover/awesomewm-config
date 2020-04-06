@@ -198,12 +198,13 @@ awful.screen.connect_for_each_screen(
 				env.wrapper(taglist[s], "taglist"),
 				separator,
 				--s.mypromptbox,
+				env.wrapper(tasklist[s], "tasklist"),
 			},
 			{ -- middle widget
 				layout = wibox.layout.align.horizontal,
-				expand = "outside",
+				--expand = "outside",
 				nil,
-				env.wrapper(tasklist[s], "tasklist"),
+				--env.wrapper(tasklist[s], "tasklist"),
 			},
 			{ -- right widgets
 				layout = wibox.layout.fixed.horizontal,

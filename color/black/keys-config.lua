@@ -119,6 +119,10 @@ local function client_letterkey(i, mod, action)
 		end
 	)
 end
+--brightness functions
+local brightness  = function(args)
+	redflat.float.brightness:change_with_xbacklight(args)
+end
 
 local rb_corner = function()
 	return { x = screen[mouse.screen].workarea.x + screen[mouse.screen].workarea.width,
@@ -577,6 +581,14 @@ function hotkeys:init(args)
 		{
 			{ env.mod, "Shift" }, "g", function() awful.spawn(env.i3lock, false) end,
 			{ description = "Lock screen with i3lock-fancy", group = "Lock screen" }
+		},
+		{
+			{}, "XF86MonBrightnessUp", function() brightness({ step = 5 }) end,
+			{ description = "Increase brightness", group = "Brightness control" }
+		},
+		{
+			{}, "XF86MonBrightnessDown", function() brightness({ step = 5, down = true }) end,
+			{ description = "Decrease brightness", group = "Brightness control" }
 		},
 		{
 			{}, "XF86AudioRaiseVolume", volume_raise,
