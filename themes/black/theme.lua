@@ -10,9 +10,10 @@ local theme = require("themes/colored/theme")
 
 -- Color scheme
 -----------------------------------------------------------------------------------------------------------------------
-theme.color.main   = "#325986"
-theme.color.urgent = "#877B83"
-theme.color.border = "#325986"
+theme.color.main   = "#FFFFFF"
+--theme.color.urgent = "#877B83"
+theme.color.urgent = "#111111"
+theme.color.border = "#FFFFFF"
 
 
 -- Common
@@ -22,12 +23,28 @@ theme.path = awful.util.get_configuration_dir() .. "themes/black"
 -- Main config
 --------------------------------------------------------------------------------
 theme.panel_height = 38 -- panel height
-theme.wallpaper    = theme.path .. "/wallpaper/none.png"
+theme.wallpaper    = theme.path .. "/wallpaper/custom.png"
 
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
 
 theme:update()
+
+-- Desktop config
+-----------------------------------------------------------------------------------------------------------------------
+theme.desktop.textset = {
+	font  = "Belligerent Madness 20",
+	spacing = 10,
+	color = {
+		main       = theme.color.urgent,
+		gray       = theme.color.desktop_gray,
+		icon       = theme.color.desktop_icon,
+		urgent     = theme.color.urgent,
+		wibox      = theme.color.bg .. "00"
+	}
+}
+
+--theme.apprunner.color = {}
 
 ---- Panel widgets
 ------------------------------------------------------------------------------------------------------------------------

@@ -13,6 +13,7 @@ local beautiful = require("beautiful")
 
 require("awful.autofocus")
 
+local lock = {}
 -- User modules
 ------------------------------------------------------------
 local redflat = require("redflat")
@@ -221,6 +222,16 @@ awful.screen.connect_for_each_screen(
 	end
 )
 
+-- Desktop widgets
+-----------------------------------------------------------------------------------------------------------------------
+if not lock.desktop then
+	local desktop = require("color.black.desktop-config") -- load file with desktop widgets configuration
+	desktop:init({
+		env = env,
+		buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
+	})
+end
+
 -- Auto run
 -----------------------------------------------------------------------------------------------------------------------
 if redflat.startup.is_startup then
@@ -240,7 +251,7 @@ rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup
 -----------------------------------------------------------------------------------------------------------------------
-local titlebar = require("shade.ruby.titlebar-config") -- load file with titlebar configuration
+local titlebar = require("color.black.titlebar-config") -- load file with titlebar configuration
 titlebar:init()
 
 -- Base signal set for awesome wm

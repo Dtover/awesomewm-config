@@ -125,10 +125,6 @@ local rb_corner = function()
 	         y = screen[mouse.screen].workarea.y + screen[mouse.screen].workarea.height }
 end
 
-local lock_command = function()
-    redflat.lock_screen.lock_screen_show()
-end
-
 -- Build hotkeys depended on config parameters
 -----------------------------------------------------------------------------------------------------------------------
 function hotkeys:init(args)
@@ -204,6 +200,14 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod }, "k", function() apprunner:up() end,
+			{ description = "Select previous item", group = "Navigation" }
+		},
+		{
+			{ env.mod }, "n", function() apprunner:down() end,
+			{ description = "Select next item", group = "Navigation" }
+		},
+		{
+			{ env.mod }, "p", function() apprunner:up() end,
 			{ description = "Select previous item", group = "Navigation" }
 		},
 	}
