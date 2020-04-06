@@ -130,32 +130,38 @@ volume.buttons = awful.util.table.join(
 
 -- System resource monitoring widgets
 --------------------------------------------------------------------------------
-local sysmon = { widget = {}, buttons = {} }
+local sysmon = { widget = {}, buttons = {}, icon = {} }
 
--- CPU usage
-sysmon.widget.cpu = redflat.widget.sysmon(
-	{ func = redflat.system.pformatted.cpu(80) },
-	{ timeout = 2, widget = redflat.gauge.monitor.dash }
+sysmon.icon.battery = redflat.util.table.check(beautiful, "wicon.battery")
+sysmon.icon.cpuram = redflat.util.table.check(beautiful, "wicon.monitor")
+
+-- CPU and RAM usage
+local cpu_storage = { cpu_total = {}, cpu_active = {} }
+
+local cpuram_func = function()
+	local cpu_usage = redflat.system.cpu_usage(cpu_storage).total
+	local mem_usage = redflat.system.memory_info().usep
+
+	return {
+		text = "CPU: " .. cpu_usage .. "%  " .. "RAM: " .. mem_usage .. "%",
+		value = { cpu_usage / 100,  mem_usage / 100},
+		alert = cpu_usage > 80 or mem_usage > 70
+	}
+end
+
+sysmon.widget.cpuram = redflat.widget.sysmon(
+	{ func = cpuram_func },
+	{ timeout = 2,  widget = redflat.gauge.monitor.double, monitor = { icon = sysmon.icon.cpuram } }
 )
 
-sysmon.buttons.cpu = awful.util.table.join(
+sysmon.buttons.cpuram = awful.util.table.join(
 	awful.button({ }, 1, function() redflat.float.top:show("cpu") end)
 )
 
--- RAM usage
-sysmon.widget.ram = redflat.widget.sysmon(
-	{ func = redflat.system.pformatted.mem(70) },
-	{ timeout = 10, widget = redflat.gauge.monitor.dash }
-)
-
-sysmon.buttons.ram = awful.util.table.join(
-	awful.button({ }, 1, function() redflat.float.top:show("mem") end)
-)
-
 -- battery
-sysmon.widget.battery = redflat.widget.battery(
+sysmon.widget.battery = redflat.widget.sysmon(
 	{ func = redflat.system.pformatted.bat(25), arg = "BAT0" },
-	{ timeout = 60, widget = redflat.gauge.monitor.dash }
+	{ timeout = 60, widget = redflat.gauge.icon.single, monitor = { is_vertical = true, icon = sysmon.icon.battery } }
 )
 
 -- Screen setup
@@ -209,13 +215,15 @@ awful.screen.connect_for_each_screen(
 			{ -- right widgets
 				layout = wibox.layout.fixed.horizontal,
 				separator,
+				env.wrapper(sysmon.widget.cpuram, "cpuram", sysmon.buttons.cpuram),
+				separator,
 				env.wrapper(volume.widget, "volume", volume.buttons),
 				separator,
-				env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
-				env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
-				env.wrapper(sysmon.widget.battery, "battery"),
-				separator,
+				--env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
+				--env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
 				env.wrapper(textclock.widget, "textclock"),
+				separator,
+				env.wrapper(sysmon.widget.battery, "battery"),
 				separator,
 				env.wrapper(tray.widget, "tray", tray.buttons),
 			},

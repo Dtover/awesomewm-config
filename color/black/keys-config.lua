@@ -470,19 +470,19 @@ function hotkeys:init(args)
 			{ description = "Application quick launcher", group = "Main" }
 		},
 		{
-			{ env.mod }, "t", function() redtitle.toggle(client.focus) end,
+			{ env.mod, "Control" }, "t", function() redtitle.toggle(client.focus) end,
 			{ description = "Show/hide titlebar for focused client", group = "Titlebar" }
 		},
 		{
-			{ env.mod, "Control" }, "t", function() redtitle.switch(client.focus) end,
+			{ env.mod }, "t", function() redtitle.switch(client.focus) end,
 			{ description = "Switch titlebar view for focused client", group = "Titlebar" }
 		},
 		{
-			{ env.mod, "Shift" }, "t", function() redtitle.toggle_all() end,
+			{ env.mod,  "Control", "Shift" }, "t", function() redtitle.toggle_all() end,
 			{ description = "Show/hide titlebar for all clients", group = "Titlebar" }
 		},
 		{
-			{ env.mod, "Control", "Shift" }, "t", function() redtitle.global_switch() end,
+			{ env.mod, "Shift" }, "t", function() redtitle.global_switch() end,
 			{ description = "Switch titlebar view for all clients", group = "Titlebar" }
 		},
 		{

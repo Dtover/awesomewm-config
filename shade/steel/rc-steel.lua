@@ -146,7 +146,7 @@ sysmon.widget.battery = redflat.widget.battery(
 -- network speed
 sysmon.widget.network = redflat.widget.net(
 	{
-		interface = "wlp60s0",
+		interface = "wlp1s0",
 		speed = { up = 6 * 1024^2, down = 6 * 1024^2 },
 		autoscale = false
 	},
