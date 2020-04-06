@@ -80,8 +80,8 @@ local function default_style()
 		border_width     = 2,
 		keytip           = { geometry = { width = 400 } },
 		dimage           = redutil.base.placeholder(),
-		color            = { border = "#575757", text = "#aaaaaa", highlight = "#eeeeee", main = "#b1222b",
-		                     bg = "#161616", bg_second = "#181818", wibox = "#202020", icon = "a0a0a0" },
+		color            = { selected = "#828282", border = "#575757", text = "#aaaaaa", highlight = "#eeeeee",
+						main = "#b1222b", bg = "#161616", bg_second = "#181818", wibox = "#202020", icon = "a0a0a0" },
 		shape            = nil
 	}
 	return redutil.table.merge(style, redutil.table.check(beautiful, "float.apprunner") or {})
@@ -143,7 +143,7 @@ local function construct_item(style)
 	end
 
 	function item:set_select()
-		item.layout:set_bg(style.color.main)
+		item.layout:set_bg(style.color.selected)
 		item.layout:set_fg(style.color.highlight)
 	end
 

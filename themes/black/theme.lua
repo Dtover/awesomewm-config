@@ -14,6 +14,7 @@ theme.color.main   = "#FFFFFF"
 --theme.color.urgent = "#877B83"
 theme.color.urgent = "#111111"
 theme.color.border = "#FFFFFF"
+theme.color.selected = "#828282"
 
 
 -- Common

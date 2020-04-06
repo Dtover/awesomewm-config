@@ -22,6 +22,7 @@ theme.color = {
 	urgent    = "#B25500",
 	highlight = "#e0e0e0",
 	border    = "#404040",
+	selected  = "#828282",
 
 	-- secondary colors
 	shadow1   = "#141414",
@@ -218,7 +219,7 @@ function theme:init()
 		border       = self.color.wibox,     -- menu border color
 		text         = self.color.text,      -- menu text color
 		highlight    = self.color.highlight, -- menu text and icons color for selected item
-		main         = self.color.main,      -- menu selection color
+		main         = self.color.selected,  -- menu selection color
 		wibox        = self.color.wibox,     -- menu background color
 		submenu_icon = self.color.icon,      -- submenu icon color
 		right_icon   = nil,                  -- right icon color in menu item
