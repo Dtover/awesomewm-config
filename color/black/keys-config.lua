@@ -604,7 +604,13 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod }, "5", function() redflat.float.player:show(rb_corner()) end,
-			{ description = "Show player", group = "Volume control" }
+			{ description = "Show player", group = "Other" }
+		},
+		{
+			{ env.mod }, "6", function()
+				naughty.notify({awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/class_schedule_full")})
+			end,
+			{ description = "Show class schedule", group = "Other" }
 		}
 	}
 

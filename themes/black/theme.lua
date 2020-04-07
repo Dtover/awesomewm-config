@@ -16,6 +16,42 @@ theme.color.urgent = "#111111"
 theme.color.border = "#FFFFFF"
 theme.color.selected = "#828282"
 
+-- Fonts
+------------------------------------------------------------
+theme.fonts = {
+	main     = "Source Code Pro Semibold 13",      -- main font
+	menu     = "Source Code Pro Semibold 13",      -- main menu font
+	tooltip  = "Source Code Pro Semibold 13",      -- tooltip font
+	notify   = "Source Code Pro Bold 14",   -- redflat notify popup font
+	clock    = "Source Code Pro Semibold 13",   -- textclock widget font
+	qlaunch  = "Source Code Pro Bold 14",   -- quick launch key label font
+	keychain = "Source Code Pro Bold 14",   -- key sequence tip font
+	title    = "Source Code Pro Bold 13", -- widget titles font
+	tiny     = "Source Code Pro Bold 10", -- smallest font for widgets
+	titlebar = "Source Code Pro Bold 13", -- client titlebar font
+	hotkeys  = {
+		main  = "Source Code Pro 12",             -- hotkeys helper main font
+		key   = "Source Code Pro Semibold 12", -- hotkeys helper key font (use monospace for align)
+		title = "Source Code Pro Bold 13",        -- hotkeys helper group title font
+	},
+	player   = {
+		main = "Source Code Pro Bold 13", -- player widget main font
+		time = "Source Code Pro Bold 15", -- player widget current time font
+	},
+}
+
+theme.cairo_fonts = {
+	tag         = { font = "Source Code Pro Semibold", size = 16, face = 1 }, -- tag widget font
+	appswitcher = { font = "Source Code Pro Semibold", size = 20, face = 1 }, -- appswitcher widget font
+	navigator   = {
+		title = { font = "Source Code Pro Bold", size = 28, face = 1, slant = 0 }, -- window navigation title font
+		main  = { font = "Source Code Pro Bold", size = 22, face = 1, slant = 0 }  -- window navigation  main font
+	},
+
+	desktop = {
+		textbox = { font = "Source Code Pro Semibold", size = 24, face = 0 },
+	},
+}
 
 -- Common
 -----------------------------------------------------------------------------------------------------------------------
