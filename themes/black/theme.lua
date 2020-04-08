@@ -70,7 +70,8 @@ theme:update()
 -- Desktop config
 -----------------------------------------------------------------------------------------------------------------------
 theme.desktop.textset = {
-	font  = "Belligerent Madness 20",
+	--font  = "Belligerent Madness 20",
+	font = "Iosevka 17",
 	spacing = 10,
 	color = {
 		main       = theme.color.urgent,

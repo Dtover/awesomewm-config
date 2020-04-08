@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                Colorless config                                                   --
+--                                                White config                                                   --
 -----------------------------------------------------------------------------------------------------------------------
 
 -- Load modules
@@ -207,7 +207,7 @@ hotkeys:init({ env = env, menu = mymenu.mainmenu, volume = volume.widget })
 
 -- Rules
 -----------------------------------------------------------------------------------------------------------------------
-local rules = require("colorless.rules-config") -- load file with rules configuration
+local rules = require("color.white.rules-config") -- load file with rules configuration
 rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup

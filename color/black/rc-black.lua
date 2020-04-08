@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                Colorless config                                                   --
+--                                                Black config                                                   --
 -----------------------------------------------------------------------------------------------------------------------
 
 -- Load modules
@@ -10,6 +10,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local gears = require("gears")
 
 require("awful.autofocus")
 
@@ -44,6 +45,7 @@ mymenu:init({ env = env })
 
 -- Separator
 -----------------------------------------------------------------------------------------------------------------------
+--local separator = redflat.gauge.special_separator.dpowerline()
 local separator = redflat.gauge.separator.vertical()
 
 -- Tasklist
@@ -65,7 +67,7 @@ tasklist.buttons = awful.util.table.join(
 -----------------------------------------------------------------------------------------------------------------------
 local taglist = {}
 
-taglist.style = { widget = redflat.gauge.tag.ruby.new, show_tip = false}
+taglist.style = { widget = redflat.gauge.tag.black.new, show_tip = false}
 
 -- double line taglist
 taglist.cols_num = 4
@@ -255,7 +257,7 @@ hotkeys:init({ env = env, menu = mymenu.mainmenu, volume = volume.widget })
 
 -- Rules
 -----------------------------------------------------------------------------------------------------------------------
-local rules = require("colorless.rules-config") -- load file with rules configuration
+local rules = require("color.black.rules-config") -- load file with rules configuration
 rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup

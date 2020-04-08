@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                              RedFlat separatoe widget                                             --
+--                                            RedFlat special_separator widget                                       --
 -----------------------------------------------------------------------------------------------------------------------
--- Simple graphical separator to decorate panel
+-- special separator to decorate panel
 -----------------------------------------------------------------------------------------------------------------------
 
 -- Grab environment
@@ -14,7 +14,7 @@ local redutil = require("redflat.util")
 
 -- Initialize tables for module
 -----------------------------------------------------------------------------------------------------------------------
-local separator = {}
+local special_separator = {}
 
 -- Generate default theme vars
 -----------------------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ end
 -- Create a new separator widget
 -- Total size two pixels bigger than sum of margins for general direction
 -----------------------------------------------------------------------------------------------------------------------
-local function separator_base(horizontal, style)
+local function special_separator_base(horizontal, style)
 
 	-- Initialize vars
 	--------------------------------------------------------------------------------
@@ -63,13 +63,14 @@ local function separator_base(horizontal, style)
 		cr:set_source(color(style.color.shadow1))
 		if horizontal then
 			cr:rectangle(0, 0, w, 1)
-		else
-			cr:rectangle(0, 0, 1, h)
 			--cr:move_to(-2.5, 0)
-			--cr:rel_line_to(1, 0)
-			--cr:rel_line_to(5, h)
-			--cr:rel_line_to(-1, 0)
-			--cr:close_path()
+			--cr:rel_line_to()
+		else
+			cr:move_to(-2.5, 0)
+			cr:rel_line_to(1, 0)
+			cr:rel_line_to(5, h)
+			cr:rel_line_to(-1, 0)
+			cr:close_path()
 		end
 		cr:fill()
 
@@ -77,12 +78,11 @@ local function separator_base(horizontal, style)
 		if horizontal then
 			cr:rectangle(0, 1, w, 1)
 		else
-			cr:rectangle(1, 0, 1, h)
-			--cr:move_to(-1.5, 0)
-			--cr:rel_line_to(1, 0)
-			--cr:rel_line_to(5, h)
-			--cr:rel_line_to(-1, 0)
-			--cr:close_path()
+			cr:move_to(-1.5, 0)
+			cr:rel_line_to(1, 0)
+			cr:rel_line_to(5, h)
+			cr:rel_line_to(-1, 0)
+			cr:close_path()
 		end
 		cr:fill()
 	end
@@ -93,13 +93,13 @@ end
 
 -- Horizontal and vertical variants
 -----------------------------------------------------------------------------------------------------------------------
-function separator.vertical(style)
-	return separator_base(false, style)
+function special_separator.tilt(style)
+	return special_separator_base(false, style)
 end
 
-function separator.horizontal(style)
-	return separator_base(true, style)
+function special_separator.dpowerline(style)
+	return special_separator_base(true, style)
 end
 
 -----------------------------------------------------------------------------------------------------------------------
-return separator
+return special_separator

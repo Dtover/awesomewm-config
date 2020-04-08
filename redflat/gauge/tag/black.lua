@@ -80,10 +80,17 @@ function rubytag.new(style)
 		local cl = data.state.active and style.color.main or style.color.gray
 		cr:set_source(color(cl))
 
-		cr:rectangle(
-			style.base.pad, math.floor((height - style.base.height) / 2),
-			width - 2 * style.base.pad, style.base.height
-		)
+		--cr:rectangle(
+			--style.base.pad, math.floor((height - style.base.height) / 2),
+			--width - 2 * style.base.pad, style.base.height
+		--)
+		cr:move_to(style.base.pad, math.floor((height - style.base.height) / 2))
+		cr:rel_line_to(width - 2 * style.base.pad, 0)
+		cr:rel_line_to(style.base.height / 2, style.base.height / 2)
+		cr:rel_line_to(0 - style.base.height / 2, style.base.height / 2)
+		cr:rel_line_to(2 * style.base.pad - width, 0)
+		cr:rel_line_to(style.base.height / 2, 0 - style.base.height / 2)
+		cr:close_path()
 		cr:set_line_width(style.base.thickness)
 		cr:stroke()
 
@@ -93,10 +100,17 @@ function rubytag.new(style)
 		     or (data.state.occupied and  style.color.icon or style.color.gray)
 		cr:set_source(color(cl))
 
-		cr:rectangle(
-			style.mark.pad, math.floor((height - style.mark.height) / 2),
-			width - 2 * style.mark.pad, style.mark.height
-		)
+		--cr:rectangle(
+			--style.mark.pad, math.floor((height - style.mark.height) / 2),
+			--width - 2 * style.mark.pad, style.mark.height
+		--)
+		cr:move_to(style.mark.pad + 2, math.floor((height - style.mark.height) / 2))
+		cr:rel_line_to(width - 2 * style.mark.pad - 1, 0)
+		cr:rel_line_to(style.mark.height, style.mark.height / 2)
+		cr:rel_line_to(0 - style.mark.height, style.mark.height / 2)
+		cr:rel_line_to(2 * style.mark.pad + 1 - width, 0)
+		cr:rel_line_to(style.mark.height / 2, 0 - style.mark.height / 2)
+		cr:close_path()
 
 		cr:fill()
 	end
