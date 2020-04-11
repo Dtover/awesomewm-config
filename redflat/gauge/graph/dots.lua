@@ -88,6 +88,11 @@ function counter.new(style)
 				cr:set_source(color(cc))
 
 				cr:rectangle(0, 0, style.dot_size, - style.dot_size)
+				--cr:move_to( - style.dot_size / 2, 0)
+				--cr:rel_line_to(style.dot_size, 0)
+				--cr:rel_line_to(style.dot_size / 2, - style.dot_size)
+				--cr:rel_line_to(- style.dot_size, 0)
+				--cr:close_path()
 				cr:fill()
 
 				cr:translate(style.dot_size + style.dot_gap_h, 0)

@@ -394,6 +394,10 @@ function hotkeys:init(args)
 			{ description = "Open a terminal", group = "Main" }
 		},
 		{
+			{ env.mod, "Control" }, "Return", function() awful.spawn(env.stterminal) end,
+			{ description = "Open a st", group = "Main" }
+		},
+		{
 			{ env.mod, "Shift" }, "Return", function() awful.spawn(env.scratchpad) end,
 			{ description = "Open a floating terminal", group = "Main" }
 		},
@@ -603,7 +607,7 @@ function hotkeys:init(args)
 			{ description = "Mute audio", group = "Volume control" }
 		},
 		{
-			{ env.mod }, "5", function() redflat.float.player:show(rb_corner()) end,
+			{ env.mod }, ".", function() redflat.float.player:show(rb_corner()) end,
 			{ description = "Show player", group = "Other" }
 		},
 		{

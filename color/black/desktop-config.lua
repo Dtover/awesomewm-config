@@ -115,9 +115,9 @@ function desktop:init(args)
 	boxes.memory.ram = base_box("Base memory pool")
 	boxes.memory.swap = base_box("Reserve memory pool", 60)
 
-	boxes.storage.root = storage_check("system storage", "/")
-	boxes.storage.home = storage_check("user storage", "/home")
-	boxes.storage.misk = storage_check("application storage", "/mnt/storage")
+	boxes.storage.root  = storage_check("system storage", "/")
+	boxes.storage.home  = storage_check("user storage", "/home")
+	boxes.storage.misk  = storage_check("application storage", "/mnt/storage")
 	boxes.storage.media = storage_check("content storage", "/mnt/media")
 
 	-- construct layout
@@ -175,7 +175,7 @@ function desktop:init(args)
 	})
 
 	-- calculate geometry
-	local wibox_height = 360
+	local wibox_height = 380
 	local wibox_x = 1080
 	main.geometry = {
 		x = wibox_x, y = wa.y + (wa.height - wibox_height) / 2,

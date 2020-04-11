@@ -95,7 +95,7 @@ function titlebar:init()
 		{ gap = 8 }
 	)
 
-	redtitle._index    = 1 -- choose default titlebar model
+	redtitle._index    = 2 -- choose default titlebar model
 
 	-- titlebar setup for clients
 	client.connect_signal(
