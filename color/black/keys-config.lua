@@ -612,9 +612,9 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod }, "6", function()
-				naughty.notify({awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/class_schedule_full")})
+				awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/keys.sh")
 			end,
-			{ description = "Show class schedule", group = "Other" }
+			{ description = "Change some keys layout", group = "Other" }
 		}
 	}
 
@@ -680,6 +680,42 @@ function hotkeys:init(args)
 					end
 				end,
 			{ description = "Resize then move scratchpad to left bottom", group = "Client keys" }
+		},
+		{
+			{ env.mod }, "-",function ()
+					if client.focus.floating
+					then
+					  client.focus.width = 640
+					  client.focus.height = 480
+					  client.focus.x = 1200
+					  client.focus.y = 50
+					end
+				end,
+			{ description = "Resize then move scratchpad to right top", group = "Client keys" }
+		},
+		{
+			{ env.mod }, "9",function ()
+					if client.focus.floating
+					then
+					  client.focus.width = 950
+					  client.focus.height = 600
+					  client.focus.x = 10
+					  client.focus.y = 20
+					end
+				end,
+			{ description = "Resize then move scratchpad to left top", group = "Client keys" }
+		},
+		{
+			{ env.mod }, "0",function ()
+					if client.focus.floating
+					then
+					  client.focus.width = 950
+					  client.focus.height = 600
+					  client.focus.x = 950
+					  client.focus.y = 20
+					end
+				end,
+			{ description = "Resize then move scratchpad to right top", group = "Client keys" }
 		},
 		{
 			{ env.mod, "Shift" }, "f", function() redflat.float.control:show() end,

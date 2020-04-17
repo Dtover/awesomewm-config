@@ -29,10 +29,15 @@ theme.fonts = {
 	title    = "Source Code Pro Bold 13", -- widget titles font
 	tiny     = "Source Code Pro Bold 10", -- smallest font for widgets
 	titlebar = "Source Code Pro Bold 13", -- client titlebar font
+	--hotkeys  = {
+		--main  = "Roboto 9",        -- hotkeys helper main font
+		--key   = "Roboto 10", 		-- hotkeys helper key font (use monospace for align)
+		--title = "Roboto 12",        -- hotkeys helper group title font
+	--},
 	hotkeys  = {
-		main  = "Source Code Pro 12",             -- hotkeys helper main font
-		key   = "Source Code Pro Semibold 12", -- hotkeys helper key font (use monospace for align)
-		title = "Source Code Pro Bold 13",        -- hotkeys helper group title font
+		main  = "Source Code Pro 10",             -- hotkeys helper main font
+		key   = "Source Code Pro Semibold 10", -- hotkeys helper key font (use monospace for align)
+		title = "Source Code Pro Bold 12",        -- hotkeys helper group title font
 	},
 	player   = {
 		main = "Source Code Pro Bold 13", -- player widget main font
