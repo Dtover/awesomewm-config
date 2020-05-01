@@ -1,0 +1,22 @@
+#!/bin/bash
+# a simple script to get a sentence from hitokoto and jinrishici
+Rnum=$[$RANDOM %2]
+if [[ $Rnum -eq 0 ]];then
+	linenumber=$[$RANDOM%100]
+	ln=$(cat ~/Documents/sentence/hitokoto/hitokoto_collection.md | wc -l)
+	until [[ $linenumber -gt 0 && $linenumber -le $ln && $(expr $linenumber % 2) -eq 0 ]]
+	do
+		linenumber=$[$RANDOM%100]
+	done
+	word=$(cat ~/Documents/sentence/hitokoto/hitokoto_collection.md | sed -n $linenumber'p')
+else
+	linenumber=$[$RANDOM%100]
+	ln=$(cat ~/Documents/sentence/jinrishici/jinrishici_collection.md | wc -l)
+	until [[ $linenumber -gt 0 && $linenumber -le $ln ]]
+	do
+		linenumber=$[$RANDOM%100]
+	done
+	word=$(cat ~/Documents/sentence/jinrishici/jinrishici_collection.md | sed -n $linenumber'p')
+fi
+echo "$word"
+

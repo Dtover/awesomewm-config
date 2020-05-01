@@ -25,7 +25,7 @@ rules.floating_any = {
 	class = {
 		"Arandr", "Gpick", "Kruler", "MessageWin", "Wpa_gui", "pinentry", "veromix",
 		"xtightvncviewer","flameshot","Tk","Variety", "baidunetdisk", "Baidunetdisk",
-		"TelegramDesktop","zoom","Fcitx-config-gtk3", "Wine"
+		"TelegramDesktop","zoom","Fcitx-config-gtk3", "Wine", "PacketTracer7"
 	},
 	name = { "Event Tester" },
 	role = { "AlarmWindow", "pop-up" }

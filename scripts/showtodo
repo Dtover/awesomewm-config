@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ -f ~/Desktop/DailyTODO/"$(date '+%m_%d')" ]];then
+		echo $(cat ~/Desktop/DailyTODO/"$(date '+%m_%d')")
+	else
+		echo "no list built yet!"
+fi

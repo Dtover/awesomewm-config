@@ -611,6 +611,12 @@ function hotkeys:init(args)
 			{ description = "Show player", group = "Other" }
 		},
 		{
+			{ env.mod }, "5", function()
+				awful.spawn.with_shell("vc")
+			end,
+			{ description = "Change v2ray config", group = "Other" }
+		},
+		{
 			{ env.mod }, "6", function()
 				awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/keys.sh")
 			end,
