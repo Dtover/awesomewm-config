@@ -78,6 +78,8 @@ function desktop:init(args)
 	boxes.todotitle = base_box("TODO_List for today:")
 	boxes.todo = base_box(read.output("showtodo"))
 
+	boxes.separater = base_box("---------------------------------------------")
+
 	boxes.sentencetitle = base_box("Jinrishici or Hitokoto:")
 	boxes.sentence = base_box(read.output("sentence"))
 
@@ -85,6 +87,7 @@ function desktop:init(args)
 	main.body.area = wibox.widget({
 		boxes.todotitle,
 		boxes.todo,
+		boxes.separater,
 		boxes.sentencetitle,
 		boxes.sentence,
 		spacing = 20,
