@@ -36,55 +36,71 @@ function desktop:init(args)
 		local box =  wibox.widget({
 			text          = label,
 			font          = font,
-			valign        = "top",
+			valign        = "middle",
 			forced_height = height,
 			widget        = wibox.widget.textbox,
 		})
-
 		box._label = label
 		return box
 	end
 
-	local function storage_check(label, fs)
-		local box = wibox.widget({
-			text   = label,
-			font   = font,
-			widget = wibox.widget.textbox,
-		})
+	--local function storage_check(label, fs)
+		--local box = wibox.widget({
+			--text   = label,
+			--font   = font,
+			--widget = wibox.widget.textbox,
+		--})
 
-		-- awesome v4.3 timer API used
-		box._label = label
-		box._timer = timer({
-			timeout   = 60 * 10,
-			call_now  = true,
-			autostart = true,
-			callback  = function()
-				local data = system.fs_info(fs)
-				local color, text = get_level(fs_levels, data[1])
-				box:set_markup(string.format(
-					'<span color="%s">%s</span> <span color="%s">%s</span>',
-					beautiful.color.icon, box._label, color, text
-				))
-			end
-		})
+		--box._label = label
+		--box._timer = timer({
+			--timeout   = 60 * 10,
+			--call_now  = true,
+			--autostart = true,
+			--callback  = function()
+				--local data = system.fs_info(fs)
+				--local color, text = get_level(fs_levels, data[1])
+				--box:set_markup(string.format(
+					--'<span color="%s">%s</span> <span color="%s">%s</span>',
+					--beautiful.color.icon, box._label, color, text
+				--))
+			--end
+		--})
 
-		return box
-	end
+		--return box
+	--end
 
 	-- init widgets
 	local boxes = { storage = {}, memory = {} }
 	local main = { body = {} }
 
-	boxes.todotitle = base_box("TODO_List for today:")
+	local class = nil
+	boxes.classtitle = base_box("Class for today:")
+	local function getClass()
+		if(read.output("class_schedule") == "") then
+			class = "No class following"
+		else
+			class = read.output("class_schedule")
+
+		end
+		return class
+	end
+	--boxes.class = base_box(read.output("class_schedule"))
+	boxes.class = base_box(getClass())
+
+	boxes.todotitle = base_box("TODO list for today:")
 	boxes.todo = base_box(read.output("showtodo"))
 
-	boxes.separater = base_box("---------------------------------------------")
+	boxes.separater = base_box("-----------------------------------------------------")
 
-	boxes.sentencetitle = base_box("Jinrishici or Hitokoto:")
+	--boxes.sentencetitle = base_box("Jinrishici/Hitokoto:")
+	boxes.sentencetitle = base_box("One sentence:")
 	boxes.sentence = base_box(read.output("sentence"))
 
 	-- construct layout
 	main.body.area = wibox.widget({
+		boxes.classtitle,
+		boxes.class,
+		boxes.separater,
 		boxes.todotitle,
 		boxes.todo,
 		boxes.separater,
@@ -94,6 +110,15 @@ function desktop:init(args)
 		layout  = wibox.layout.fixed.vertical
 	})
 	main.body.style = beautiful.desktop
+
+	boxes.class.timer = timer({
+		timeout = 10,
+		call_now = true,
+		autostart = true,
+		callback = function()
+			boxes.class.text = getClass()
+		end
+	})
 
 	boxes.todo.timer = timer({
 		timeout   = 100,
@@ -116,8 +141,8 @@ function desktop:init(args)
 	})
 
 	-- calculate geometry
-	local wibox_height = 400
-	local wibox_x = 950
+	local wibox_height = 800
+	local wibox_x = 900
 	main.geometry = {
 		x = wibox_x, y = wa.y + (wa.height - wibox_height) / 2,
 		width = wa.width - wibox_x, height = wibox_height
