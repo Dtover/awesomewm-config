@@ -69,7 +69,7 @@ local function daymarks(style)
 		self._data.today = date.day
 		self._data.days = date.month == 2 and is_leap_year(date.year) and 29 or days_in_month[date.month]
 		self._data.weekend = { (7 - first_week_day) % 7, (8 - first_week_day) % 7 }
-		self._data.label = string.format("%.2d%s%.2d", date.day, style.label.sep, date.month)
+		self._data.label = string.format("%.2d%s%.2d", date.month, style.label.sep, date.day)
 
 		self:emit_signal("widget::redraw_needed")
 	end
@@ -79,7 +79,7 @@ local function daymarks(style)
 		if index then self._data.pointer.index = index end
 
 		local date = os.date('*t')
-		self._data.pointer.label = string.format("%.2d%s%.2d", self._data.pointer.index, style.label.sep, date.month)
+		self._data.pointer.label = string.format("%.2d%s%.2d", date.month, style.label.sep, self._data.pointer.index)
 
 		self:emit_signal("widget::redraw_needed")
 	end

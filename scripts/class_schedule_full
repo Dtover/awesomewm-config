@@ -1,5 +1,5 @@
 #!/bin/bash 
-# judge this week is single week or not 
+# Judge this week whether single week or not 
 nums=$(expr $(date +%j) - 47)
 if [[ $(expr $(expr $(expr $nums / 7) + 1) % 2) -eq 1 ]];then
 	echo "| Time | Mon                    | Tue                   | Wed                  | Thu | Fri                |"

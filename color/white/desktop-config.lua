@@ -96,6 +96,17 @@ function desktop:init(args)
 	boxes.sentencetitle = base_box("One sentence:")
 	boxes.sentence = base_box(read.output("sentence"))
 
+	-- Calendar
+	--------------------------------------------------------------------------------
+	local cwidth = 100 -- calendar widget width
+	local cy = 21      -- calendar widget upper margin
+	local cheight = wa.height - 2*cy
+
+	local calendar = {
+		args     = { timeout = 60 },
+		geometry = { x = wa.width - cwidth, y = cy, width = cwidth, height = cheight }
+	}
+
 	-- construct layout
 	main.body.area = wibox.widget({
 		boxes.classtitle,
@@ -140,6 +151,8 @@ function desktop:init(args)
 		end
 	})
 
+	calendar.body = redflat.desktop.calendar(calendar.args, calendar.style)
+
 	-- calculate geometry
 	local wibox_height = 800
 	local wibox_x = 900
@@ -150,13 +163,15 @@ function desktop:init(args)
 
 	-- Desktop setup
 	--------------------------------------------------------------------------------
-	local desktop_objects = { main }
+	local desktop_objects = { main, calendar }
 
 	if not autohide then
 		redflat.util.desktop.build.static(desktop_objects, args.buttons)
 	else
 		redflat.util.desktop.build.dynamic(desktop_objects, nil, beautiful.desktopbg, args.buttons)
 	end
+
+	calendar.body:activate_wibox(calendar.wibox)
 end
 
 -- End
