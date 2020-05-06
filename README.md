@@ -1,3 +1,3 @@
 Preview:
-![https://github.com/Dtover/awesomewm-config/blob/master/Preview/Desktop.png](Desktop)
-![https://github.com/Dtover/awesomewm-config/blob/master/Preview/Windows.png](Windows)
+![](https://raw.githubusercontent.com/Dtover/awesomewm-config/master/Preview/Desktop.png)
+![](https://raw.githubusercontent.com/Dtover/awesomewm-config/master/Preview/Windows.png)
