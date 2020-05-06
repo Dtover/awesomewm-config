@@ -90,8 +90,12 @@ function desktop:init(args)
 	boxes.todotitle = base_box("TODO list for today:")
 	boxes.todo = base_box(read.output("showtodo"))
 
-	boxes.separater = base_box("-----------------------------------------------------")
-
+	local sep = "-----------------------------------------------------"
+	boxes.separater = base_box(sep)
+	boxes.separater:set_markup(string.format(
+		'<span color="%s">%s</span>',
+		beautiful.color.main, sep
+	))
 	--boxes.sentencetitle = base_box("Jinrishici/Hitokoto:")
 	boxes.sentencetitle = base_box("One sentence:")
 	boxes.sentence = base_box(read.output("sentence"))
@@ -151,11 +155,12 @@ function desktop:init(args)
 		end
 	})
 
+
 	calendar.body = redflat.desktop.calendar(calendar.args, calendar.style)
 
 	-- calculate geometry
 	local wibox_height = 800
-	local wibox_x = 900
+	local wibox_x = 800
 	main.geometry = {
 		x = wibox_x, y = wa.y + (wa.height - wibox_height) / 2,
 		width = wa.width - wibox_x, height = wibox_height
@@ -163,15 +168,16 @@ function desktop:init(args)
 
 	-- Desktop setup
 	--------------------------------------------------------------------------------
-	local desktop_objects = { main, calendar }
+	--local desktop_objects = { main, calendar }
+	local desktop_objects = { main }
 
 	if not autohide then
-		redflat.util.desktop.build.static(desktop_objects, args.buttons)
+		redflat.util.desktop.build.static(desktop_objects)
 	else
 		redflat.util.desktop.build.dynamic(desktop_objects, nil, beautiful.desktopbg, args.buttons)
 	end
 
-	calendar.body:activate_wibox(calendar.wibox)
+	--calendar.body:activate_wibox(calendar.wibox)
 end
 
 -- End

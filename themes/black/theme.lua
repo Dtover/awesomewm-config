@@ -10,11 +10,15 @@ local theme = require("themes/colored/theme")
 
 -- Color scheme
 -----------------------------------------------------------------------------------------------------------------------
-theme.color.main   = "#FFFFFF"
+--theme.color.main   = "#FFFFFF"
+theme.color.main     = "#4E9A06"
 --theme.color.urgent = "#877B83"
-theme.color.urgent = "#111111"
-theme.color.border = "#FFFFFF"
-theme.color.selected = "#828282"
+--theme.color.urgent = "#111111"
+theme.color.urgent   = "#93AD63"
+--theme.color.border = "#FFFFFF"
+theme.color.border   = "#4E9A06"
+--theme.color.selected = "#828282"
+theme.color.selected = "#4E9A06"
 
 -- Fonts
 ------------------------------------------------------------
@@ -65,7 +69,7 @@ theme.path = awful.util.get_configuration_dir() .. "themes/black"
 -- Main config
 --------------------------------------------------------------------------------
 theme.panel_height = 38 -- panel height
-theme.wallpaper    = theme.path .. "/wallpaper/custom.png"
+theme.wallpaper    = theme.path .. "/wallpaper/Boy.png"
 
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
