@@ -168,8 +168,8 @@ function desktop:init(args)
 
 	-- Desktop setup
 	--------------------------------------------------------------------------------
-	local desktop_objects = { main, calendar }
-	--local desktop_objects = { main }
+	--local desktop_objects = { main, calendar }
+	local desktop_objects = { main }
 
 	if not autohide then
 		redflat.util.desktop.build.static(desktop_objects)
@@ -177,7 +177,7 @@ function desktop:init(args)
 		redflat.util.desktop.build.dynamic(desktop_objects, nil, beautiful.desktopbg, args.buttons)
 	end
 
-	calendar.body:activate_wibox(calendar.wibox)
+	--calendar.body:activate_wibox(calendar.wibox)
 end
 
 -- End

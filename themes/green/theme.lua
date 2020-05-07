@@ -59,12 +59,12 @@ theme.cairo_fonts = {
 
 -- Common
 -----------------------------------------------------------------------------------------------------------------------
-theme.path = awful.util.get_configuration_dir() .. "themes/black"
+theme.path = awful.util.get_configuration_dir() .. "themes/green"
 
 -- Main config
 --------------------------------------------------------------------------------
 theme.panel_height = 38 -- panel height
-theme.wallpaper    = theme.path .. "/wallpaper/Boy2.png"
+theme.wallpaper    = theme.path .. "/wallpaper/Boy_right.png"
 
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
@@ -120,6 +120,9 @@ theme.widget.wrapper = {
 theme.widget.tasklist.char_digit = 6
 theme.widget.tasklist.width = 100
 theme.widget.tasklist.task = theme.gauge.task.init
+
+theme.float.apprunner.border_width = 0
+theme.float.prompt.border_width = 0
 
 -- End
 -----------------------------------------------------------------------------------------------------------------------

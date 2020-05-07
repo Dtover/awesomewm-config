@@ -44,7 +44,7 @@ function env:init(args)
 	self.iconpick_1 = args.iconpick_1 or "iconpick01"
 	self.iconpick_2 = args.iconpick_2 or "iconpick02"
 	self.i3lock = args.i3lock or "i3lock-fancy"
-	self.betterlock = args.betterlock or "betterlockscreen -l -t 'type passwd to unlock'"
+	self.betterlock = args.betterlock or "btlock"
 
 	-- boolean defaults is pain
 	self.sloppy_focus = args.sloppy_focus or false
