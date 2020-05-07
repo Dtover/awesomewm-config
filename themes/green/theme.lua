@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                  Green theme                                                      --
+--                                                   Black theme                                                      --
 -----------------------------------------------------------------------------------------------------------------------
 local awful = require("awful")
 
@@ -10,148 +10,116 @@ local theme = require("themes/colored/theme")
 
 -- Color scheme
 -----------------------------------------------------------------------------------------------------------------------
---theme.color.main   = "#127e1f"
-theme.color.main   = "#00FFAF"
-theme.color.urgent = "#a21e17"
-
-
--- Common
------------------------------------------------------------------------------------------------------------------------
-theme.path = awful.util.get_configuration_dir() .. "themes/green"
-
--- Main config
---------------------------------------------------------------------------------
-theme.panel_height = 40 -- panel height
-theme.wallpaper    = theme.path .. "/wallpaper/custom.png"
+theme.color.main     = "#4E9A06"
+theme.color.urgent   = "#93AD63"
+theme.color.border   = "#4E9A06"
+theme.color.selected = "#4E9A06"
 
 -- Fonts
 ------------------------------------------------------------
-theme.cairo_fonts.desktop.textbox = { font = "Iosevka", size = 22, face = 0 }
+theme.fonts = {
+	main     = "Source Code Pro Semibold 13",      -- main font
+	menu     = "Source Code Pro Semibold 13",      -- main menu font
+	tooltip  = "Source Code Pro Semibold 13",      -- tooltip font
+	notify   = "Source Code Pro Bold 14",   -- redflat notify popup font
+	clock    = "Source Code Pro Semibold 13",   -- textclock widget font
+	qlaunch  = "Source Code Pro Bold 14",   -- quick launch key label font
+	keychain = "Source Code Pro Bold 14",   -- key sequence tip font
+	title    = "Source Code Pro Bold 13", -- widget titles font
+	tiny     = "Source Code Pro Bold 10", -- smallest font for widgets
+	titlebar = "Source Code Pro Bold 13", -- client titlebar font
+	--hotkeys  = {
+		--main  = "Roboto 9",        -- hotkeys helper main font
+		--key   = "Roboto 10", 		-- hotkeys helper key font (use monospace for align)
+		--title = "Roboto 12",        -- hotkeys helper group title font
+	--},
+	hotkeys  = {
+		main  = "Source Code Pro 10",             -- hotkeys helper main font
+		key   = "Source Code Pro Semibold 10", -- hotkeys helper key font (use monospace for align)
+		title = "Source Code Pro Bold 12",        -- hotkeys helper group title font
+	},
+	player   = {
+		main = "Source Code Pro Bold 13", -- player widget main font
+		time = "Source Code Pro Bold 15", -- player widget current time font
+	},
+}
 
+theme.cairo_fonts = {
+	tag         = { font = "Source Code Pro Semibold", size = 16, face = 1 }, -- tag widget font
+	appswitcher = { font = "Source Code Pro Semibold", size = 20, face = 1 }, -- appswitcher widget font
+	navigator   = {
+		title = { font = "Source Code Pro Bold", size = 28, face = 1, slant = 0 }, -- window navigation title font
+		main  = { font = "Source Code Pro Bold", size = 22, face = 1, slant = 0 }  -- window navigation  main font
+	},
+
+	desktop = {
+		textbox = { font = "Source Code Pro Semibold", size = 24, face = 0 },
+	},
+}
+
+-- Common
+-----------------------------------------------------------------------------------------------------------------------
+theme.path = awful.util.get_configuration_dir() .. "themes/black"
+
+-- Main config
+--------------------------------------------------------------------------------
+theme.panel_height = 38 -- panel height
+theme.wallpaper    = theme.path .. "/wallpaper/Boy2.png"
 
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
-theme:update()
 
+theme:update()
 
 -- Desktop config
 -----------------------------------------------------------------------------------------------------------------------
-
--- Desktop widgets placement
---------------------------------------------------------------------------------
-theme.desktop.grid = {
-	width  = { 480, 480, 480 },
-	height = { 180, 146, 146, 132, 17 },
-	edge   = { width = { 80, 80 }, height = { 50, 50 } }
+theme.desktop.textset = {
+	--font  = "Belligerent Madness 20",
+	font = "Iosevka 17",
+	spacing = 10,
+	color = {
+		main       = theme.color.urgent,
+		gray       = theme.color.desktop_gray,
+		icon       = theme.color.desktop_icon,
+		urgent     = theme.color.urgent,
+		wibox      = theme.color.bg .. "00"
+	}
 }
 
-theme.desktop.places = {
-	netspeed = { 1, 1 },
-	ssdspeed = { 2, 1 },
-	hddspeed = { 3, 1 },
-	cpumem   = { 1, 2 },
-	transm   = { 1, 3 },
-	disks    = { 1, 4 },
-	thermal  = { 1, 5 }
-}
+---- Panel widgets
+------------------------------------------------------------------------------------------------------------------------
 
--- Desktop widgets
---------------------------------------------------------------------------------
--- individual widget settings doesn't used by redflat module
--- but grab directly from rc-files to rewrite base style
-theme.individual.desktop = { speedmeter = {}, multimeter = {}, multiline = {}, singleline = {} }
-
-theme.desktop.line_height = 17
-
--- Lines (common part)
-theme.desktop.common.pack.lines.label = { width = 60, draw = "by_width" }
-theme.desktop.common.pack.lines.text  = { width = 80, draw = "by_edges" }
-theme.desktop.common.pack.lines.gap   = { text = 14, label = 14 }
-theme.desktop.common.pack.lines.line  = { height = theme.desktop.line_height }
-
--- Speedmeter (base widget)
---theme.desktop.speedmeter.normal.label = { height = theme.desktop.line_height }
-theme.desktop.speedmeter.normal.images = { theme.path .. "/desktop/up.svg", theme.path .. "/desktop/down.svg" }
-
--- Speedmeter drive (individual widget)
-theme.individual.desktop.speedmeter.drive = {
-	unit   = { { "B", -1 }, { "KB", 2 }, { "MB", 2048 } },
-}
-
--- Multimeter (base widget)
-theme.desktop.multimeter.icon           = { image = false }
-theme.desktop.multimeter.height.lines   = 54
-theme.desktop.multimeter.height.upright = 70
-theme.desktop.multimeter.upbar          = { width = 32, chunk = { num = 10, line = 3 }, shape = "plain" }
-theme.desktop.multimeter.lines.show     = { label = true, tooltip = false, text = true }
-
--- Multimeter cpu and ram (individual widget)
-theme.individual.desktop.multimeter.cpumem = {
-	labels = { "RAM", "SWAP" },
-}
-
--- Multimeter transmission info (individual widget)
-theme.individual.desktop.multimeter.transmission = {
-	labels = { "SEED", "DNLD" },
-	unit   = { { "KB", -1 }, { "MB", 1024^1 } },
-}
-
--- Multilines disks (individual widget)
-theme.individual.desktop.multiline.disks = {
-	unit  = { { "KB", 1 }, { "MB", 1024^1 }, { "GB", 1024^2 } },
-	lines = { show = { text = false } },
-}
-
--- Singleline temperature (individual widget)
-theme.individual.desktop.singleline.thermal = {
-	lbox = { draw = "by_width", width = 45 },
-	rbox = { draw = "by_edges", width = 52 },
-	iwidth = 125,
-	icon = theme.path .. "/desktop/fire.svg",
-	unit = { { "°C", -1 } },
-}
-
--- Panel widgets
------------------------------------------------------------------------------------------------------------------------
+-- Audio
+theme.gauge.audio.blue.dash.plain = true
+theme.gauge.audio.blue.dash.bar.num = 8
+theme.gauge.audio.blue.dash.bar.width = 3
+theme.gauge.audio.blue.dmargin = { 5, 0, 9, 9 }
+theme.gauge.audio.blue.width = 86
+theme.gauge.audio.blue.icon = theme.path .. "/widget/audio.svg"
 
 -- individual margins for panel widgets
-------------------------------------------------------------
+--------------------------------------------------------------------------------
 theme.widget.wrapper = {
+	layoutbox   = { 12, 9, 6, 6 },
 	textclock   = { 10, 10, 0, 0 },
-	volume      = { 12, 10, 3, 3 },
-	network     = { 6, 6, 8, 8 },
-	cpu         = { 10, 2, 8, 8 },
-	ram         = { 2, 2, 8, 8 },
-	battery     = { 2, 10, 8, 8 },
-	keyboard    = { 10, 10, 5, 5 },
-	mail        = { 10, 10, 5, 5 },
-	tray        = { 10, 12, 8, 8 },
-	taglist     = { 6, 6, 0, 0 },
-	tasklist    = { 14, 0, 0, 0 }, -- centering tasklist widget
+	volume      = { 4, 9, 3, 3 },
+	microphone  = { 5, 6, 6, 6 },
+	keyboard    = { 9, 9, 3, 3 },
+	mail        = { 9, 9, 3, 3 },
+	tray        = { 8, 8, 7, 7 },
+	cpu         = { 9, 3, 7, 7 },
+	ram         = { 2, 2, 7, 7 },
+	cpuram      = { 10, 10, 5, 5 },
+	battery     = { 4, 4, 7, 7 },
+	network     = { 4, 4, 7, 7 },
+	updates     = { 6, 6, 6, 6 },
+	taglist     = { 4, 4, 6, 4 },
+	tasklist    = { 10, 0, 0, 0 }, -- centering tasklist widget
 }
 
--- Various widgets style tuning
-------------------------------------------------------------
-
--- Dotcount
-theme.gauge.graph.dots.dot_gap_h = 5
-
--- Tasklist
-theme.widget.tasklist.custom_icon = true
-theme.widget.tasklist.need_group = false
-theme.widget.tasklist.task = theme.gauge.task.green
-
-theme.widget.tasklist.parser = {
-	desktop_file_dirs = awful.util.table.join(
-		theme.service.dfparser.desktop_file_dirs,
-		{ '~/.local/share/applications-fake' }
-	)
-}
-
--- icon aliases
-theme.widget.tasklist.iconnames = {}
-theme.widget.tasklist.iconnames["jetbrains-pycharm-ce"] = "pycharm"
-theme.widget.tasklist.iconnames["Qemu-system-x86_64"]   = "qemu"
+theme.widget.tasklist.char_digit = 6
+theme.widget.tasklist.width = 100
+theme.widget.tasklist.task = theme.gauge.task.init
 
 -- End
 -----------------------------------------------------------------------------------------------------------------------
