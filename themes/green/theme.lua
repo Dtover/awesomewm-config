@@ -121,8 +121,10 @@ theme.widget.tasklist.char_digit = 6
 theme.widget.tasklist.width = 100
 theme.widget.tasklist.task = theme.gauge.task.init
 
-theme.float.apprunner.border_width = 0
-theme.float.prompt.border_width = 0
+theme.float.apprunner.border_width = 2
+theme.float.prompt.border_width = 2
+theme.float.top.border_width = 2
+theme.float.player.border_width = 2
 
 -- End
 -----------------------------------------------------------------------------------------------------------------------

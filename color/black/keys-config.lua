@@ -450,12 +450,12 @@ function hotkeys:init(args)
 			--{ description = "Show main menu", group = "Widgets" }
 		--},
 		{
-			{ env.mod }, "d", function() apprunner:show() end,
-			{ description = "Application launcher", group = "Widgets" }
+			{ env.mod }, "d", function() redflat.float.prompt:run() end,
+			{ description = "Show the prompt box", group = "Widgets" }
 		},
 		{
-			{ env.mod,  "Shift" }, "d", function() redflat.float.prompt:run() end,
-			{ description = "Show the prompt box", group = "Widgets" }
+			{ env.mod,  "Shift" }, "d", function() apprunner:show() end,
+			{ description = "Application launcher", group = "Widgets" }
 		},
 		{
 			{ env.mod, "Control" }, "p", function() redflat.widget.minitray:toggle() end,
@@ -469,10 +469,10 @@ function hotkeys:init(args)
 			{ env.mod, "Control" }, "i", function() redflat.float.top:show("mem") end,
 			{ description = "Show memory usage", group = "Widgets" }
 		},
-		{
-			{ env.mod, "Control" }, "d", function() redflat.float.qlaunch:show() end,
-			{ description = "Application quick launcher", group = "Main" }
-		},
+		--{
+			--{ env.mod, "Control" }, "d", function() redflat.float.qlaunch:show() end,
+			--{ description = "Application quick launcher", group = "Main" }
+		--},
 		{
 			{ env.mod, "Control" }, "t", function() redtitle.toggle(client.focus) end,
 			{ description = "Show/hide titlebar for focused client", group = "Titlebar" }
