@@ -612,15 +612,22 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod }, "5", function()
-				awful.spawn.with_shell("vc")
+				awful.spawn.with_shell("vc");
 			end,
 			{ description = "Change v2ray config", group = "Other" }
 		},
 		{
 			{ env.mod }, "6", function()
-				awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/keys.sh")
+				awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/keys.sh");
+				redflat.float.notify:show({ text =  "Keys remapped" })
 			end,
-			{ description = "Change some keys layout", group = "Other" }
+			{ description = "Remap keys", group = "Other" }
+		},
+		{
+			{ env.mod }, "7", function()
+				redflat.float.notify:show({ text =  "Hi guys" })
+			end,
+			{ description = "Notify Test", group = "Other" }
 		}
 	}
 
