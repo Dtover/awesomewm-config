@@ -120,6 +120,7 @@ theme.widget.wrapper = {
 theme.widget.tasklist.char_digit = 6
 theme.widget.tasklist.width = 100
 theme.widget.tasklist.task = theme.gauge.task.init
+theme.float.player.border_width = 2
 
 -- End
 -----------------------------------------------------------------------------------------------------------------------

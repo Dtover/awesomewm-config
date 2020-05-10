@@ -11,5 +11,7 @@ xinput --set-prop $id $natural_scrolling_id 1
 xinput --set-prop $id $tap_to_click_id 1
 xset -dpms
 xset s 3600 3600
-xautolock -time 15 -locker i3lock-fancy &
+#xautolock -time 15 -locker i3lock-fancy &
+xautolock -time 15 -locker btlock &
+
 

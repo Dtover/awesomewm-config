@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                Green config                                                   --
+--                                                Colorless config                                                   --
 -----------------------------------------------------------------------------------------------------------------------
 
 -- Load modules
@@ -10,11 +10,9 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local gears = require("gears")
 
 require("awful.autofocus")
 
-local lock = {}
 -- User modules
 ------------------------------------------------------------
 local redflat = require("redflat")
@@ -23,21 +21,21 @@ redflat.startup:activate()
 
 -- Error handling
 -----------------------------------------------------------------------------------------------------------------------
-require("color.Basis.ercheck-config") -- load file with error handling
+require("colorless.ercheck-config") -- load file with error handling
 
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
-local env = require("color.Basis.env-config") -- load file with environment
-env:init({ theme = "green" })
+local env = require("colorless.env-config") -- load file with environment
+env:init({ theme = "colored" })
 
 -- Layouts setup
 -----------------------------------------------------------------------------------------------------------------------
-local layouts = require("color.Basis.layout-config") -- load file with tile layouts setup
+local layouts = require("colorless.layout-config") -- load file with tile layouts setup
 layouts:init()
 
 -- Main menu configuration
 -----------------------------------------------------------------------------------------------------------------------
-local mymenu = require("color.Basis.menu-config") -- load file with menu configuration
+local mymenu = require("colorless.menu-config") -- load file with menu configuration
 mymenu:init({ env = env })
 
 -- Panel widgets
@@ -45,15 +43,11 @@ mymenu:init({ env = env })
 
 -- Separator
 -----------------------------------------------------------------------------------------------------------------------
---local separator = redflat.gauge.special_separator.dpowerline()
 local separator = redflat.gauge.separator.vertical()
 
 -- Tasklist
 -----------------------------------------------------------------------------------------------------------------------
 local tasklist = {}
-
--- load list of app name aliases from files and set it as part of tasklist theme
-tasklist.style = { appnames = require("color.Basis.alias-config")}
 
 tasklist.buttons = awful.util.table.join(
 	awful.button({}, 1, redflat.widget.tasklist.action.select),
@@ -66,20 +60,7 @@ tasklist.buttons = awful.util.table.join(
 -- Taglist widget
 -----------------------------------------------------------------------------------------------------------------------
 local taglist = {}
-
-taglist.style = { widget = redflat.gauge.tag.black.new, show_tip = false}
-
--- double line taglist
-taglist.cols_num = 4
-taglist.rows_num = 2
-
-taglist.layout = wibox.widget {
-	expand          = true,
-	forced_num_rows = taglist.rows_num,
-	forced_num_cols = taglist.cols_num,
-    layout          = wibox.layout.grid,
-}
-
+taglist.style = { widget = redflat.gauge.tag.orange.new, show_tip = true }
 taglist.buttons = awful.util.table.join(
 	awful.button({         }, 1, function(t) t:view_only() end),
 	awful.button({ env.mod }, 1, function(t) if client.focus then client.focus:move_to_tag(t) end end),
@@ -120,50 +101,34 @@ tray.buttons = awful.util.table.join(
 local volume = {}
 volume.widget = redflat.widget.pulse(nil, { widget = redflat.gauge.audio.blue.new })
 
--- activate player widget
-redflat.float.player:init({ name = env.player })
-
-volume.buttons = awful.util.table.join(
-	awful.button({}, 4, function() volume.widget:change_volume()                end),
-	awful.button({}, 5, function() volume.widget:change_volume({ down = true }) end),
-	awful.button({}, 1, function() volume.widget:mute()                         end),
-	awful.button({}, 3, function() redflat.float.player:show()                  end)
-)
-
 -- System resource monitoring widgets
 --------------------------------------------------------------------------------
-local sysmon = { widget = {}, buttons = {}, icon = {} }
+local sysmon = { widget = {}, buttons = {} }
 
-sysmon.icon.battery = redflat.util.table.check(beautiful, "wicon.battery")
-sysmon.icon.cpuram = redflat.util.table.check(beautiful, "wicon.monitor")
-
--- CPU and RAM usage
-local cpu_storage = { cpu_total = {}, cpu_active = {} }
-
-local cpuram_func = function()
-	local cpu_usage = redflat.system.cpu_usage(cpu_storage).total
-	local mem_usage = redflat.system.memory_info().usep
-
-	return {
-		text = "CPU: " .. cpu_usage .. "%  " .. "RAM: " .. mem_usage .. "%",
-		value = { cpu_usage / 100,  mem_usage / 100},
-		alert = cpu_usage > 80 or mem_usage > 70
-	}
-end
-
-sysmon.widget.cpuram = redflat.widget.sysmon(
-	{ func = cpuram_func },
-	{ timeout = 2,  widget = redflat.gauge.monitor.double, monitor = { icon = sysmon.icon.cpuram } }
+-- CPU usage
+sysmon.widget.cpu = redflat.widget.sysmon(
+	{ func = redflat.system.pformatted.cpu(80) },
+	{ timeout = 2, widget = redflat.gauge.monitor.circle }
 )
 
-sysmon.buttons.cpuram = awful.util.table.join(
+sysmon.buttons.cpu = awful.util.table.join(
 	awful.button({ }, 1, function() redflat.float.top:show("cpu") end)
+)
+
+-- RAM usage
+sysmon.widget.ram = redflat.widget.sysmon(
+	{ func = redflat.system.pformatted.mem(80) },
+	{ timeout = 10, widget = redflat.gauge.monitor.circle }
+)
+
+sysmon.buttons.ram = awful.util.table.join(
+	awful.button({ }, 1, function() redflat.float.top:show("mem") end)
 )
 
 -- battery
 sysmon.widget.battery = redflat.widget.sysmon(
 	{ func = redflat.system.pformatted.bat(25), arg = "BAT0" },
-	{ timeout = 60, widget = redflat.gauge.icon.single, monitor = { is_vertical = true, icon = sysmon.icon.battery } }
+	{ timeout = 60, widget = redflat.gauge.monitor.circle }
 )
 
 -- Screen setup
@@ -177,18 +142,16 @@ awful.screen.connect_for_each_screen(
 
 		-- tags
 		--awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8" }, s, awful.layout.layouts[2])
-		awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "TagQ", "TagW", "TagE", "TagR" }, s, layoutseq )
+		awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8" }, s, layoutseq )
 
 		-- layoutbox widget
 		layoutbox[s] = redflat.widget.layoutbox({ screen = s })
 
 		-- taglist widget
-		taglist[s] = redflat.widget.taglist(
-			{ screen = s, buttons = taglist.buttons, hint = env.tagtip,layout = taglist.layout }, taglist.style
-		)
+		taglist[s] = redflat.widget.taglist({ screen = s, buttons = taglist.buttons, hint = env.tagtip }, taglist.style)
 
 		-- tasklist widget
-		tasklist[s] = redflat.widget.tasklist({ screen = s, buttons = tasklist.buttons }, tasklist.style)
+		tasklist[s] = redflat.widget.tasklist({ screen = s, buttons = tasklist.buttons })
 
 		-- panel wibox
 		s.panel = awful.wibar({ position = "bottom", screen = s, height = beautiful.panel_height or 36 })
@@ -206,26 +169,23 @@ awful.screen.connect_for_each_screen(
 				env.wrapper(taglist[s], "taglist"),
 				separator,
 				--s.mypromptbox,
-				env.wrapper(tasklist[s], "tasklist"),
 			},
 			{ -- middle widget
 				layout = wibox.layout.align.horizontal,
-				--expand = "outside",
+				expand = "outside",
 				nil,
-				--env.wrapper(tasklist[s], "tasklist"),
+				env.wrapper(tasklist[s], "tasklist"),
 			},
 			{ -- right widgets
 				layout = wibox.layout.fixed.horizontal,
+				--separator,
+				--env.wrapper(volume.widget, "volume", volume.buttons),
 				separator,
-				env.wrapper(sysmon.widget.cpuram, "cpuram", sysmon.buttons.cpuram),
-				separator,
-				env.wrapper(volume.widget, "volume", volume.buttons),
-				separator,
-				--env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
-				--env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
-				env.wrapper(textclock.widget, "textclock"),
-				separator,
+				env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
+				env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
 				env.wrapper(sysmon.widget.battery, "battery"),
+				separator,
+				env.wrapper(textclock.widget, "textclock"),
 				separator,
 				env.wrapper(tray.widget, "tray", tray.buttons),
 			},
@@ -233,39 +193,29 @@ awful.screen.connect_for_each_screen(
 	end
 )
 
--- Desktop widgets
------------------------------------------------------------------------------------------------------------------------
-if not lock.desktop then
-	local desktop = require("color.green.desktop-config") -- load file with desktop widgets configuration
-	desktop:init({
-		env = env,
-		buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
-	})
-end
-
 -- Auto run
 -----------------------------------------------------------------------------------------------------------------------
 if redflat.startup.is_startup then
-	local autostart = require("color.Basis.autostart-config") -- load file with autostart application list
+	local autostart = require("colorless.autostart-config") -- load file with autostart application list
 	autostart.run()
 end
 
 -- Key bindings
 -----------------------------------------------------------------------------------------------------------------------
-local hotkeys = require("color.Basis.keys-config") -- load file with hotkeys configuration
+local hotkeys = require("colorless.keys-config") -- load file with hotkeys configuration
 hotkeys:init({ env = env, menu = mymenu.mainmenu, volume = volume.widget })
 
 -- Rules
 -----------------------------------------------------------------------------------------------------------------------
-local rules = require("color.Basis.rules-config") -- load file with rules configuration
+local rules = require("colorless.rules-config") -- load file with rules configuration
 rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup
 -----------------------------------------------------------------------------------------------------------------------
-local titlebar = require("color.Basis.titlebar-config") -- load file with titlebar configuration
+local titlebar = require("shade.ruby.titlebar-config") -- load file with titlebar configuration
 titlebar:init()
 
 -- Base signal set for awesome wm
 -----------------------------------------------------------------------------------------------------------------------
-local signals = require("color.Basis.signals-config") -- load file with signals configuration
+local signals = require("colorless.signals-config") -- load file with signals configuration
 signals:init({ env = env })

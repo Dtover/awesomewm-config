@@ -21,6 +21,8 @@ local laybox = redflat.widget.layoutbox
 local grid = redflat.layout.grid
 local redtip = redflat.float.hotkeys
 local redtitle = redflat.titlebar
+--local numkeys_line = { "1", "2", "3", "4" }
+--local tagkeys_line = { "q", "w", "e", "r" }
 
 -- Key support functions
 -----------------------------------------------------------------------------------------------------------------------
@@ -87,19 +89,9 @@ local function vhtile_toggle()
 	end
 end
 
-local tagkeys_line = {}
-tagkeys_line[1] = "1"
-tagkeys_line[2] = "2"
-tagkeys_line[3] = "3"
-tagkeys_line[4] = "4"
-tagkeys_line[5] = "q"
-tagkeys_line[6] = "w"
-tagkeys_line[7] = "e"
-tagkeys_line[8] = "r"
-
-local function tag_letterkey(i, mod, action)
+local function tag_numkey(i, mod, action)
 	return awful.key(
-		mod, tagkeys_line[i],
+		mod, "#" .. i + 9,
 		function ()
 			local screen = awful.screen.focused()
 			local tag = screen.tags[i]
@@ -108,9 +100,9 @@ local function tag_letterkey(i, mod, action)
 	)
 end
 
-local function client_letterkey(i, mod, action)
+local function client_numkey(i, mod, action)
 	return awful.key(
-		mod, tagkeys_line[i],
+		mod, "#" .. i + 9,
 		function ()
 			if client.focus then
 				local tag = client.focus.screen.tags[i]
@@ -119,15 +111,7 @@ local function client_letterkey(i, mod, action)
 		end
 	)
 end
---brightness functions
-local brightness  = function(args)
-	redflat.float.brightness:change_with_xbacklight(args)
-end
 
-local rb_corner = function()
-	return { x = screen[mouse.screen].workarea.x + screen[mouse.screen].workarea.width,
-	         y = screen[mouse.screen].workarea.y + screen[mouse.screen].workarea.height }
-end
 
 -- Build hotkeys depended on config parameters
 -----------------------------------------------------------------------------------------------------------------------
@@ -141,9 +125,9 @@ function hotkeys:init(args)
 	local mainmenu = args.menu
 
 	self.mouse.root = (awful.util.table.join(
-		awful.button({ }, 3, function () mainmenu:toggle() end)
-		--awful.button({ }, 4, awful.tag.viewprev),
-		--awful.button({ }, 5, awful.tag.viewnext)
+		awful.button({ }, 3, function () mainmenu:toggle() end),
+		awful.button({ }, 4, awful.tag.viewnext),
+		awful.button({ }, 5, awful.tag.viewprev)
 	))
 
 	-- volume functions
@@ -204,14 +188,6 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod }, "k", function() apprunner:up() end,
-			{ description = "Select previous item", group = "Navigation" }
-		},
-		{
-			{ env.mod }, "n", function() apprunner:down() end,
-			{ description = "Select next item", group = "Navigation" }
-		},
-		{
-			{ env.mod }, "p", function() apprunner:up() end,
 			{ description = "Select previous item", group = "Navigation" }
 		},
 	}
@@ -301,10 +277,6 @@ function hotkeys:init(args)
 			{ description = "Run todo builder", group = "Run app" }
 		},
 		--{
-			--{}, "q", function() if client.focus then client.focus:kill() end end,
-			--{ description = "Kill focused client", group = "Kill application", keyset = { "q" } }
-		--},
-		--{
 			--{}, "a", function() awful.spawn(env.ssh) end,
 			--{ description = "Run ssh in st", group = "Run app" }
 		--}
@@ -378,11 +350,11 @@ function hotkeys:init(args)
 			{ description = "[Hold]Show hotkeys helper", group = "Main" }
 		},
 		{
-			{ env.mod }, "v", function () redflat.service.navigator:run() end,
+			{ env.mod }, "r", function () redflat.service.navigator:run() end,
 			{ description = "Window control mode", group = "Main" }
 		},
 		{
-			{ env.mod, "Shift" }, "v", awesome.restart,
+			{ env.mod, "Shift" }, "r", awesome.restart,
 			{ description = "Reload awesome", group = "Main" }
 		},
 		{
@@ -392,10 +364,6 @@ function hotkeys:init(args)
 		{
 			{ env.mod }, "Return", function() awful.spawn(env.terminal) end,
 			{ description = "Open a terminal", group = "Main" }
-		},
-		{
-			{ env.mod, "Control" }, "Return", function() awful.spawn(env.stterminal) end,
-			{ description = "Open a st", group = "Main" }
 		},
 		{
 			{ env.mod, "Shift" }, "Return", function() awful.spawn(env.scratchpad) end,
@@ -445,17 +413,17 @@ function hotkeys:init(args)
 			{ env.mod, "Shift" }, "Tab", restore_all_then_switch_to_fullscreen,
 			{ description = "Restore client then set current tag fullscreen", group = "Client focus" }
 		},
-		--{
-			--{ env.mod }, "w", function() mainmenu:show() end,
-			--{ description = "Show main menu", group = "Widgets" }
-		--},
 		{
-			{ env.mod }, "d", function() redflat.float.prompt:run() end,
-			{ description = "Show the prompt box", group = "Widgets" }
+			{ env.mod }, "w", function() mainmenu:show() end,
+			{ description = "Show main menu", group = "Widgets" }
 		},
 		{
-			{ env.mod,  "Shift" }, "d", function() apprunner:show() end,
+			{ env.mod }, "d", function() apprunner:show() end,
 			{ description = "Application launcher", group = "Widgets" }
+		},
+		{
+			{ env.mod,  "Shift" }, "d", function() redflat.float.prompt:run() end,
+			{ description = "Show the prompt box", group = "Widgets" }
 		},
 		{
 			{ env.mod, "Control" }, "p", function() redflat.widget.minitray:toggle() end,
@@ -469,24 +437,24 @@ function hotkeys:init(args)
 			{ env.mod, "Control" }, "i", function() redflat.float.top:show("mem") end,
 			{ description = "Show memory usage", group = "Widgets" }
 		},
-		--{
-			--{ env.mod, "Control" }, "d", function() redflat.float.qlaunch:show() end,
-			--{ description = "Application quick launcher", group = "Main" }
-		--},
 		{
-			{ env.mod, "Control" }, "t", function() redtitle.toggle(client.focus) end,
+			{ env.mod, "Control" }, "d", function() redflat.float.qlaunch:show() end,
+			{ description = "Application quick launcher", group = "Main" }
+		},
+		{
+			{ env.mod }, "t", function() redtitle.toggle(client.focus) end,
 			{ description = "Show/hide titlebar for focused client", group = "Titlebar" }
 		},
 		{
-			{ env.mod }, "t", function() redtitle.switch(client.focus) end,
+			{ env.mod, "Control" }, "t", function() redtitle.switch(client.focus) end,
 			{ description = "Switch titlebar view for focused client", group = "Titlebar" }
 		},
 		{
-			{ env.mod,  "Control", "Shift" }, "t", function() redtitle.toggle_all() end,
+			{ env.mod, "Shift" }, "t", function() redtitle.toggle_all() end,
 			{ description = "Show/hide titlebar for all clients", group = "Titlebar" }
 		},
 		{
-			{ env.mod, "Shift" }, "t", function() redtitle.global_switch() end,
+			{ env.mod, "Control", "Shift" }, "t", function() redtitle.global_switch() end,
 			{ description = "Switch titlebar view for all clients", group = "Titlebar" }
 		},
 		{
@@ -542,7 +510,7 @@ function hotkeys:init(args)
 			{ description = "Restore minimized client", group = "Client keys" }
 		},
 		{
-			{ env.mod }, "z", vhtile_toggle,
+			{ env.mod }, "e", vhtile_toggle,
 			{ description = "Toggle layout between tile and tilebottom", group = "Clients managment" }
 		},
 		{
@@ -555,7 +523,7 @@ function hotkeys:init(args)
 		},
 		-- keys to run apps
 		{
-			{ env.mod, "Shift" }, "z", function () awful.spawn(env.asrl, false) end,
+			{ env.mod, "Shift" }, "e", function () awful.spawn(env.asrl, false) end,
 			{ description = "Run system options", group = "App launcher keys" }
 		},
 		{
@@ -587,14 +555,6 @@ function hotkeys:init(args)
 			{ description = "Lock screen with i3lock-fancy", group = "Lock screen" }
 		},
 		{
-			{}, "XF86MonBrightnessUp", function() brightness({ step = 5 }) end,
-			{ description = "Increase brightness", group = "Brightness control" }
-		},
-		{
-			{}, "XF86MonBrightnessDown", function() brightness({ step = 5, down = true }) end,
-			{ description = "Decrease brightness", group = "Brightness control" }
-		},
-		{
 			{}, "XF86AudioRaiseVolume", volume_raise,
 			{ description = "Increase volume", group = "Volume control" }
 		},
@@ -606,29 +566,7 @@ function hotkeys:init(args)
 			{}, "XF86AudioMute", volume_mute,
 			{ description = "Mute audio", group = "Volume control" }
 		},
-		{
-			{ env.mod }, ".", function() redflat.float.player:show(rb_corner()) end,
-			{ description = "Show player", group = "Other" }
-		},
-		{
-			{ env.mod }, "5", function()
-				awful.spawn.with_shell("vc");
-			end,
-			{ description = "Change v2ray config", group = "Other" }
-		},
-		{
-			{ env.mod }, "6", function()
-				awful.spawn.with_shell("bash /home/dtover/.config/awesome/scripts/keys.sh");
-				redflat.float.notify:show({ text =  "Keys remapped" })
-			end,
-			{ description = "Remap keys", group = "Other" }
-		},
-		{
-			{ env.mod }, "7", function()
-				redflat.float.notify:show({ text =  "Hi guys" })
-			end,
-			{ description = "Notify Test", group = "Other" }
-		}
+
 	}
 
 	-- Client keys
@@ -651,7 +589,7 @@ function hotkeys:init(args)
 			{ descritption = "increase the number of master clients", group = "Client keys" },
 		},
 		{
-			{ env.mod, "Shift" }, "Escape", function(c) c:kill() end,
+			{ env.mod, "Shift" }, "q", function(c) c:kill() end,
 			{ description = "Close", group = "Client keys" }
 		},
 		{
@@ -693,42 +631,6 @@ function hotkeys:init(args)
 					end
 				end,
 			{ description = "Resize then move scratchpad to left bottom", group = "Client keys" }
-		},
-		{
-			{ env.mod }, "-",function ()
-					if client.focus.floating
-					then
-					  client.focus.width = 640
-					  client.focus.height = 480
-					  client.focus.x = 1200
-					  client.focus.y = 50
-					end
-				end,
-			{ description = "Resize then move scratchpad to right top", group = "Client keys" }
-		},
-		{
-			{ env.mod }, "9",function ()
-					if client.focus.floating
-					then
-					  client.focus.width = 950
-					  client.focus.height = 600
-					  client.focus.x = 10
-					  client.focus.y = 20
-					end
-				end,
-			{ description = "Resize then move scratchpad to left top", group = "Client keys" }
-		},
-		{
-			{ env.mod }, "0",function ()
-					if client.focus.floating
-					then
-					  client.focus.width = 950
-					  client.focus.height = 600
-					  client.focus.x = 950
-					  client.focus.y = 20
-					end
-				end,
-			{ description = "Resize then move scratchpad to right top", group = "Client keys" }
 		},
 		{
 			{ env.mod, "Shift" }, "f", function() redflat.float.control:show() end,
@@ -851,35 +753,35 @@ function hotkeys:init(args)
 	--------------------------------------------------------------------------------
 
 	-- add real keys without description here
-	for i = 1, 8 do
+	for i = 1, 9 do
 		self.keys.root = awful.util.table.join(
 			self.keys.root,
-			tag_letterkey(i,    { env.mod },                     function(t) t:view_only()               end),
-			tag_letterkey(i,    { env.mod, "Control" },          function(t) awful.tag.viewtoggle(t)     end),
-			client_letterkey(i, { env.mod, "Shift" },            function(t) client.focus:move_to_tag(t) end),
-			client_letterkey(i, { env.mod, "Control", "Shift" }, function(t) client.focus:toggle_tag(t)  end)
+			tag_numkey(i,    { env.mod },                     function(t) t:view_only()               end),
+			tag_numkey(i,    { env.mod, "Control" },          function(t) awful.tag.viewtoggle(t)     end),
+			client_numkey(i, { env.mod, "Shift" },            function(t) client.focus:move_to_tag(t) end),
+			client_numkey(i, { env.mod, "Control", "Shift" }, function(t) client.focus:toggle_tag(t)  end)
 		)
 	end
 
 	-- make fake keys with description special for key helper widget
-	local numkeys = { "1", "2", "3", "4", "q", "w", "e", "r" }
+	local numkeys = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 
 	self.fake.numkeys = {
 		{
-			{ env.mod }, "1..4;q..r", nil,
-			{ description = "Switch to tag", group = "Tag keys", keyset = numkeys }
+			{ env.mod }, "1..9", nil,
+			{ description = "Switch to tag", group = "Numeric keys", keyset = numkeys }
 		},
 		{
-			{ env.mod, "Control" }, "1..4;q..r", nil,
-			{ description = "Toggle tag", group = "Tag keys", keyset = numkeys }
+			{ env.mod, "Control" }, "1..9", nil,
+			{ description = "Toggle tag", group = "Numeric keys", keyset = numkeys }
 		},
 		{
-			{ env.mod, "Shift" }, "1..4;q..r", nil,
-			{ description = "Move focused client to tag", group = "Tag keys", keyset = numkeys }
+			{ env.mod, "Shift" }, "1..9", nil,
+			{ description = "Move focused client to tag", group = "Numeric keys", keyset = numkeys }
 		},
 		{
-			{ env.mod, "Control", "Shift" }, "1..4;q..r", nil,
-			{ description = "Toggle focused client on tag", group = "Tag keys", keyset = numkeys }
+			{ env.mod, "Control", "Shift" }, "1..9", nil,
+			{ description = "Toggle focused client on tag", group = "Numeric keys", keyset = numkeys }
 		},
 	}
 

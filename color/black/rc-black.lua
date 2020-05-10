@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                Black config                                                   --
+--                                                Green config                                                   --
 -----------------------------------------------------------------------------------------------------------------------
 
 -- Load modules
@@ -23,21 +23,21 @@ redflat.startup:activate()
 
 -- Error handling
 -----------------------------------------------------------------------------------------------------------------------
-require("colorless.ercheck-config") -- load file with error handling
+require("color.Basis.ercheck-config") -- load file with error handling
 
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
-local env = require("colorless.env-config") -- load file with environment
+local env = require("color.Basis.env-config") -- load file with environment
 env:init({ theme = "black" })
 
 -- Layouts setup
 -----------------------------------------------------------------------------------------------------------------------
-local layouts = require("colorless.layout-config") -- load file with tile layouts setup
+local layouts = require("color.Basis.layout-config") -- load file with tile layouts setup
 layouts:init()
 
 -- Main menu configuration
 -----------------------------------------------------------------------------------------------------------------------
-local mymenu = require("colorless.menu-config") -- load file with menu configuration
+local mymenu = require("color.Basis.menu-config") -- load file with menu configuration
 mymenu:init({ env = env })
 
 -- Panel widgets
@@ -53,7 +53,7 @@ local separator = redflat.gauge.separator.vertical()
 local tasklist = {}
 
 -- load list of app name aliases from files and set it as part of tasklist theme
-tasklist.style = { appnames = require("color.black.alias-config")}
+tasklist.style = { appnames = require("color.Basis.alias-config")}
 
 tasklist.buttons = awful.util.table.join(
 	awful.button({}, 1, redflat.widget.tasklist.action.select),
@@ -236,7 +236,7 @@ awful.screen.connect_for_each_screen(
 -- Desktop widgets
 -----------------------------------------------------------------------------------------------------------------------
 if not lock.desktop then
-	local desktop = require("color.white.desktop-config") -- load file with desktop widgets configuration
+	local desktop = require("color.black.desktop-config") -- load file with desktop widgets configuration
 	desktop:init({
 		env = env,
 		buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
@@ -246,26 +246,26 @@ end
 -- Auto run
 -----------------------------------------------------------------------------------------------------------------------
 if redflat.startup.is_startup then
-	local autostart = require("colorless.autostart-config") -- load file with autostart application list
+	local autostart = require("color.Basis.autostart-config") -- load file with autostart application list
 	autostart.run()
 end
 
 -- Key bindings
 -----------------------------------------------------------------------------------------------------------------------
-local hotkeys = require("color.black.keys-config") -- load file with hotkeys configuration
+local hotkeys = require("color.Basis.keys-config") -- load file with hotkeys configuration
 hotkeys:init({ env = env, menu = mymenu.mainmenu, volume = volume.widget })
 
 -- Rules
 -----------------------------------------------------------------------------------------------------------------------
-local rules = require("color.black.rules-config") -- load file with rules configuration
+local rules = require("color.Basis.rules-config") -- load file with rules configuration
 rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup
 -----------------------------------------------------------------------------------------------------------------------
-local titlebar = require("color.black.titlebar-config") -- load file with titlebar configuration
+local titlebar = require("color.Basis.titlebar-config") -- load file with titlebar configuration
 titlebar:init()
 
 -- Base signal set for awesome wm
 -----------------------------------------------------------------------------------------------------------------------
-local signals = require("colorless.signals-config") -- load file with signals configuration
+local signals = require("color.Basis.signals-config") -- load file with signals configuration
 signals:init({ env = env })

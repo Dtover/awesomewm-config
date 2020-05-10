@@ -4,6 +4,9 @@
 
 local appnames = {}
 
+appnames["netease-cloud-music" ] = "MUSIC"
+appnames["google-chrome-stable"] = "CHROME"
+appnames["termite" 			   ] = "TERM"
 appnames["Exaile"              ] = "EXAILE"
 appnames["Pragha"              ] = "PRAG"
 appnames["Smplayer"            ] = "SMPL"
@@ -28,10 +31,6 @@ appnames["jetbrains-pycharm-ce"] = "PYCRM"
 appnames["jetbrains-clion"     ] = "CLION"
 appnames["Qemu-system-x86_64"  ] = "QEMU"
 appnames["Gpaste-ui"           ] = "PASTE"
-appnames["netease-cloud-music" ] = "MUSIC"
-appnames["Google-chrome"	   ] = "CHROME"
-appnames["Brave-browser"	   ] = "BRAVE"
-appnames["Alacritty" 		   ] = "ALCRTY"
 
 return appnames
 
