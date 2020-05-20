@@ -87,6 +87,7 @@ local function vhtile_toggle()
 	end
 end
 
+
 local tagkeys_line = {}
 tagkeys_line[1] = "1"
 tagkeys_line[2] = "2"
@@ -625,8 +626,17 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod }, "7", function()
-				redflat.float.notify:show({ text =  "Hi guys" })
-			end,
+					local read = redflat.util.read
+					local todo = read.output("showtodo")
+					naughty.notify({
+						width  = auto,
+						height = auto,
+						border_color = "#4E9A06",
+						border_width= 2,
+						--preset = naughty.config.presets.critical,
+						text   = todo
+					})
+				end,
 			{ description = "Notify Test", group = "Other" }
 		}
 	}

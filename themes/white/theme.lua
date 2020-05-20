@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------
---                                                   Green theme                                                      --
+--                                                   White theme                                                      --
 -----------------------------------------------------------------------------------------------------------------------
 local awful = require("awful")
 
@@ -10,10 +10,10 @@ local theme = require("themes/colored/theme")
 
 -- Color scheme
 -----------------------------------------------------------------------------------------------------------------------
-theme.color.main     = "#4E9A06"
-theme.color.urgent   = "#93AD63"
-theme.color.border   = "#4E9A06"
-theme.color.selected = "#4E9A06"
+theme.color.main   = "#FFFFFF"
+theme.color.urgent = "#111111"
+theme.color.border = "#FFFFFF"
+theme.color.selected = "#828282"
 
 -- Fonts
 ------------------------------------------------------------
@@ -59,12 +59,12 @@ theme.cairo_fonts = {
 
 -- Common
 -----------------------------------------------------------------------------------------------------------------------
-theme.path = awful.util.get_configuration_dir() .. "themes/green"
+theme.path = awful.util.get_configuration_dir() .. "themes/black"
 
 -- Main config
 --------------------------------------------------------------------------------
 theme.panel_height = 38 -- panel height
-theme.wallpaper    = theme.path .. "/wallpaper/Boy_right.png"
+theme.wallpaper    = theme.path .. "/wallpaper/None.png"
 
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
@@ -120,12 +120,7 @@ theme.widget.wrapper = {
 theme.widget.tasklist.char_digit = 6
 theme.widget.tasklist.width = 100
 theme.widget.tasklist.task = theme.gauge.task.init
-
-theme.float.apprunner.border_width = 2
-theme.float.prompt.border_width = 2
-theme.float.top.border_width = 2
 theme.float.player.border_width = 2
-theme.float.notify.border_width = 4
 
 -- End
 -----------------------------------------------------------------------------------------------------------------------

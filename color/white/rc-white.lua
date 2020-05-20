@@ -26,11 +26,11 @@ require("colorless.ercheck-config") -- load file with error handling
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
 local env = require("colorless.env-config") -- load file with environment
-env:init({ theme = "colored" })
+env:init({ theme = "black" })
 
 -- Layouts setup
 -----------------------------------------------------------------------------------------------------------------------
-local layouts = require("colorless.layout-config") -- load file with tile layouts setup
+local layouts = require("color.white.layout-config") -- load file with tile layouts setup
 layouts:init()
 
 -- Main menu configuration
@@ -207,12 +207,12 @@ hotkeys:init({ env = env, menu = mymenu.mainmenu, volume = volume.widget })
 
 -- Rules
 -----------------------------------------------------------------------------------------------------------------------
-local rules = require("color.white.rules-config") -- load file with rules configuration
+local rules = require("colorless.rules-config") -- load file with rules configuration
 rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup
 -----------------------------------------------------------------------------------------------------------------------
-local titlebar = require("shade.ruby.titlebar-config") -- load file with titlebar configuration
+local titlebar = require("colorless.titlebar-config") -- load file with titlebar configuration
 titlebar:init()
 
 -- Base signal set for awesome wm
