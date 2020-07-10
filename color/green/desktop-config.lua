@@ -73,19 +73,18 @@ function desktop:init(args)
 	local boxes = { storage = {}, memory = {} }
 	local main = { body = {} }
 
-	local class = nil
-	boxes.classtitle = base_box("Class for today:")
-	local function getClass()
-		if(read.output("class_schedule") == "") then
-			class = "No class following"
-		else
-			class = read.output("class_schedule")
+	--local class = nil
+	--boxes.classtitle = base_box("Class for today:")
+	--local function getClass()
+		--if(read.output("class_schedule") == "") then
+			--class = "No class following"
+		--else
+			--class = read.output("class_schedule")
 
-		end
-		return class
-	end
-	--boxes.class = base_box(read.output("class_schedule"))
-	boxes.class = base_box(getClass())
+		--end
+		--return class
+	--end
+	--boxes.class = base_box(getClass())
 
 	boxes.todotitle = base_box("TODO list for today:")
 	boxes.todo = base_box(read.output("showtodo"))
@@ -113,9 +112,9 @@ function desktop:init(args)
 
 	-- construct layout
 	main.body.area = wibox.widget({
-		boxes.classtitle,
-		boxes.class,
-		boxes.separater,
+		--boxes.classtitle,
+		--boxes.class,
+		--boxes.separater,
 		boxes.todotitle,
 		boxes.todo,
 		boxes.separater,
@@ -126,14 +125,14 @@ function desktop:init(args)
 	})
 	main.body.style = beautiful.desktop
 
-	boxes.class.timer = timer({
-		timeout = 10,
-		call_now = true,
-		autostart = true,
-		callback = function()
-			boxes.class.text = getClass()
-		end
-	})
+	--boxes.class.timer = timer({
+		--timeout = 10,
+		--call_now = true,
+		--autostart = true,
+		--callback = function()
+			--boxes.class.text = getClass()
+		--end
+	--})
 
 	boxes.todo.timer = timer({
 		timeout   = 100,

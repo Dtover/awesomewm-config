@@ -638,7 +638,19 @@ function hotkeys:init(args)
 					})
 				end,
 			{ description = "Notify Test", group = "Other" }
-		}
+		},
+		--{
+			--{ env.mod }, "8", function()
+				--awful.spawn.with_shell("chatroom c");
+			--end,
+			--{ description = "Notify Test", group = "Other" }
+		--},
+		--{
+			--{ env.mod }, "9", function()
+				--awful.spawn.with_shell("chatroom s");
+			--end,
+			--{ description = "Notify Test", group = "Other" }
+		--}
 	}
 
 	-- Client keys

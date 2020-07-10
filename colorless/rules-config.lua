@@ -24,8 +24,8 @@ rules.floating_any = {
 	instance = { "DTA", "copyq", "todo" },
 	class = {
 		"Arandr", "Gpick", "Kruler", "MessageWin", "Wpa_gui", "pinentry", "veromix",
-		"xtightvncviewer","flameshot","Tk","Variety", "baidunetdisk", "Baidunetdisk",
-		"TelegramDesktop","zoom","Fcitx-config-gtk3", "Wine", "PacketTracer7"
+		"xtightvncviewer", "flameshot", "Tk", "Variety", "baidunetdisk", "Baidunetdisk",
+		"TelegramDesktop","zoom","Fcitx-config-gtk3", "Wine", "PacketTracer7", "Dialog", "LoginUI.py"
 	},
 	name = { "Event Tester" },
 	role = { "AlarmWindow", "pop-up" }
