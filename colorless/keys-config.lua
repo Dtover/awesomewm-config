@@ -301,6 +301,10 @@ function hotkeys:init(args)
 			{}, "t", function() awful.spawn(env.todo, false) end,
 			{ description = "Run todo builder", group = "Run app" }
 		},
+		{
+			{}, "a", function() awful.spawn(env.typora, false) end,
+			{ description = "Run Typora", group = "Run app" }
+		},
 		--{
 			--{}, "q", function() if client.focus then client.focus:kill() end end,
 			--{ description = "Kill focused client", group = "Kill application", keyset = { "q" } }
@@ -642,12 +646,12 @@ function hotkeys:init(args)
 				end,
 			{ description = "Notify Test", group = "Other" }
 		},
-		--{
-			--{ env.mod }, "8", function()
-				--awful.spawn.with_shell("chatroom c");
-			--end,
-			--{ description = "Notify Test", group = "Other" }
-		--},
+		{
+			{ env.mod }, "8", function()
+				awful.spawn.with_shell("touch_toggle");
+			end,
+			{ description = "Toggle touch screen", group = "Other" }
+		},
 		--{
 			--{ env.mod }, "9", function()
 				--awful.spawn.with_shell("chatroom s");

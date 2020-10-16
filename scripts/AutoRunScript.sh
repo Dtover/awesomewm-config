@@ -9,6 +9,7 @@ tap_to_click_id=`xinput list-props $id | \
                       | cut -d'(' -f2 | cut -d')' -f1`
 xinput --set-prop $id $natural_scrolling_id 1
 xinput --set-prop $id $tap_to_click_id 1
+pulseaudio --daemonize
 xset -dpms
 xset s 3600 3600
 #xautolock -time 15 -locker i3lock-fancy &

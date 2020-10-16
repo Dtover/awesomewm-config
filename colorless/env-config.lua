@@ -37,6 +37,7 @@ function env:init(args)
 	self.brave = args.brave or "brave"
 	self.musicplayer = args.musicplayer or "netease-cloud-music"
 	self.idea = args.idea or "/opt/idea-IU-202.6948.69/bin/idea.sh"
+	self.typora = args.typora or "typora /home/dtover/Typora"
 	self.ssh1 = args.ssh1 or "st -e ssh root@47.99.77.16"
 	self.ssh2 = args.ssh2 or "st -e ssh root@118.178.123.233"
 	self.bgpselector = args.bgpselector or "bgp"
