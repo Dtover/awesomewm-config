@@ -572,11 +572,7 @@ function hotkeys:init(args)
 			{ description = "Run chrome browser", group = "App launcher keys" }
 		},
 		{
-			{ env.mod, "Shift" }, "s", function() awful.spawn(env.ssh1, false) end,
-			{ description = "Connect to server in st", group = "App launcher keys" }
-		},
-		{
-			{ env.mod, "Control" }, "s", function() awful.spawn(env.ssh2, false) end,
+			{ env.mod, "Shift" }, "s", function() awful.spawn(env.ssh, false) end,
 			{ description = "Connect to server in st", group = "App launcher keys" }
 		},
 		{
