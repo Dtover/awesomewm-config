@@ -648,12 +648,12 @@ function hotkeys:init(args)
 			end,
 			{ description = "Toggle touch screen", group = "Other" }
 		},
-		--{
-			--{ env.mod }, "9", function()
-				--awful.spawn.with_shell("chatroom s");
-			--end,
-			--{ description = "Notify Test", group = "Other" }
-		--}
+		{
+			{ env.mod }, "9", function()
+				client.focus:move_to_screen()
+			end,
+			{ description = "Notify Test", group = "Other" }
+		}
 	}
 
 	-- Client keys
