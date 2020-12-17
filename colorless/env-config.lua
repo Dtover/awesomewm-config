@@ -75,9 +75,13 @@ end
 --------------------------------------------------------------------------------
 env.wallpaper = function(s)
 	if beautiful.wallpaper then
-		if not env.desktop_autohide and awful.util.file_readable(beautiful.wallpaper) then
-			--gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-			gears.wallpaper.centered(beautiful.wallpaper, s)
+		if not env.desktop_autohide and awful.util.file_readable(beautiful.wallpaper[1]) then
+			--gears.wallpaper.tiled(beautiful.wallpaper, s)
+			if s == screen.primary then
+				gears.wallpaper.centered(beautiful.wallpaper[1], s)
+			else
+				gears.wallpaper.centered(beautiful.wallpaper[2], s)
+			end
 		else
 			gears.wallpaper.set(beautiful.color.bg)
 		end

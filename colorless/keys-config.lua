@@ -5,6 +5,7 @@
 -- Grab environment
 local awful = require("awful")
 local redflat = require("redflat")
+
 -- for test
 local naughty = require("naughty")
 
@@ -14,7 +15,7 @@ local hotkeys = { mouse = {}, raw = {}, keys = {}, fake = {} }
 
 -- key aliases
 local apprunner = redflat.float.apprunner
-local appswitcher = redflat.float.appswitcher
+--local appswitcher = redflat.float.appswitcher
 local current = redflat.widget.tasklist.filter.currenttags
 local allscr = redflat.widget.tasklist.filter.allscreen
 local laybox = redflat.widget.layoutbox
@@ -244,30 +245,30 @@ function hotkeys:init(args)
 
 	-- Appswitcher
 	------------------------------------------------------------
-	local appswitcher_keys_move = {
-		{
-			{ env.mod }, "a", function() appswitcher:switch() end,
-			{ description = "Select next app", group = "Navigation" }
-		},
-		{
-			{ env.mod, "Shift" }, "a", function() appswitcher:switch({ reverse = true }) end,
-			{ description = "Select previous app", group = "Navigation" }
-		},
-	}
+	--local appswitcher_keys_move = {
+		--{
+			--{ env.mod }, "a", function() appswitcher:switch() end,
+			--{ description = "Select next app", group = "Navigation" }
+		--},
+		--{
+			--{ env.mod, "Shift" }, "a", function() appswitcher:switch({ reverse = true }) end,
+			--{ description = "Select previous app", group = "Navigation" }
+		--},
+	--}
 
-	local appswitcher_keys_action = {
-		{
-			{ env.mod }, "Super_L", function() appswitcher:hide() end,
-			{ description = "Activate and exit", group = "Action" }
-		},
-		{
-			{}, "Escape", function() appswitcher:hide(true) end,
-			{ description = "Exit", group = "Action" }
-		},
-	}
+	--local appswitcher_keys_action = {
+		--{
+			--{ env.mod }, "Super_L", function() appswitcher:hide() end,
+			--{ description = "Activate and exit", group = "Action" }
+		--},
+		--{
+			--{}, "Escape", function() appswitcher:hide(true) end,
+			--{ description = "Exit", group = "Action" }
+		--},
+	--}
 
-	appswitcher:set_keys(awful.util.table.join(appswitcher.keys.move, appswitcher_keys_move), "move")
-	appswitcher:set_keys(awful.util.table.join(appswitcher.keys.action, appswitcher_keys_action), "action")
+	--appswitcher:set_keys(awful.util.table.join(appswitcher.keys.move, appswitcher_keys_move), "move")
+	--appswitcher:set_keys(awful.util.table.join(appswitcher.keys.action, appswitcher_keys_action), "action")
 
 
 	-- Emacs like key sequences
@@ -305,17 +306,6 @@ function hotkeys:init(args)
 			{}, "a", function() awful.spawn(env.typora, false) end,
 			{ description = "Run Typora", group = "Run app" }
 		},
-		--{
-			--{}, "q", function() if client.focus then client.focus:kill() end end,
-			--{ description = "Kill focused client", group = "Kill application", keyset = { "q" } }
-		--},
-		--{
-			--{}, "a", function() awful.spawn(env.ssh) end,
-			--{ description = "Run ssh in st", group = "Run app" }
-		--}
-
-		-- { {}, "g", {}, {} }, -- run or rise group
-		-- { {}, "f", {}, {} }, -- launch application group
 	}
 
 	-- application kill actions,
@@ -480,48 +470,32 @@ function hotkeys:init(args)
 		},
 		{
 			{ env.mod, "Control" }, "t", function() redtitle.toggle(client.focus) end,
-			{ description = "Show/hide titlebar for focused client", group = "Titlebar" }
+			{ description = "Show/hide titlebar of focused client", group = "Titlebar" }
 		},
 		{
 			{ env.mod }, "t", function() redtitle.switch(client.focus) end,
-			{ description = "Switch titlebar view for focused client", group = "Titlebar" }
+			{ description = "Switch titlebar view of focused client", group = "Titlebar" }
 		},
 		{
 			{ env.mod,  "Control", "Shift" }, "t", function() redtitle.toggle_all() end,
-			{ description = "Show/hide titlebar for all clients", group = "Titlebar" }
+			{ description = "Show/hide titlebar of all clients", group = "Titlebar" }
 		},
 		{
 			{ env.mod, "Shift" }, "t", function() redtitle.global_switch() end,
-			{ description = "Switch titlebar view for all clients", group = "Titlebar" }
-		},
-		{
-			{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
-			{ description = "Switch to next with current tag", group = "Application switcher" }
+			{ description = "Switch titlebar view of all clients", group = "Titlebar" }
 		},
 		--{
-			--{ env.mod }, "q", nil, function() appswitcher:show({ filter = current, reverse = true }) end,
-			--{ description = "Switch to previous with current tag", group = "Application switcher" }
+			--{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
+			--{ description = "Switch to next with current tag", group = "Application switcher" }
 		--},
-		{
-			{ env.mod, "Shift" }, "a", nil, function() appswitcher:show({ filter = allscr }) end,
-			{ description = "Switch to next through all tags", group = "Application switcher" }
-		},
 		--{
-			--{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = allscr, reverse = true }) end,
-			--{ description = "Switch to previous through all tags", group = "Application switcher" }
+			--{ env.mod, "Shift" }, "a", nil, function() appswitcher:show({ filter = allscr }) end,
+			--{ description = "Switch to next through all tags", group = "Application switcher" }
 		--},
 		{
 			{ env.mod }, "`", awful.tag.history.restore,
 			{ description = "Go previos tag", group = "Tag navigation" }
 		},
-		--{
-			--{ env.mod }, "Right", awful.tag.viewnext,
-			--{ description = "View next tag", group = "Tag navigation" }
-		--},
-		--{
-			--{ env.mod }, "Left", awful.tag.viewprev,
-			--{ description = "View previous tag", group = "Tag navigation" }
-		--},
 		{
 			{ env.mod }, "y", function() laybox:toggle_menu(mouse.screen.selected_tag) end,
 			{ description = "Show layout menu", group = "Layouts" }
@@ -592,6 +566,14 @@ function hotkeys:init(args)
 			{ description = "Lock screen with i3lock-fancy", group = "Lock screen" }
 		},
 		{
+			{ env.mod }, "a", function() awful.screen.focus_relative(1) end,
+			{ description = "Switch between the screens", group = "Main" }
+		},
+		{
+			{ env.mod, "Shift" }, "a", function() client.focus:move_to_screen() end,
+			{ description = "Move client to another screen", group = "Main" }
+		},
+		{
 			{}, "XF86MonBrightnessUp", function() brightness({ step = 5 }) end,
 			{ description = "Increase brightness", group = "Brightness control" }
 		},
@@ -615,11 +597,17 @@ function hotkeys:init(args)
 			{ env.mod }, ".", function() redflat.float.player:show(rb_corner()) end,
 			{ description = "Show player", group = "Other" }
 		},
+		--{
+			--{ env.mod }, "5", function()
+				--awful.spawn.with_shell("vc");
+			--end,
+			--{ description = "Change v2ray config", group = "Other" }
+		--},
 		{
 			{ env.mod }, "5", function()
-				awful.spawn.with_shell("vc");
+				awful.spawn.with_shell("touch_toggle");
 			end,
-			{ description = "Change v2ray config", group = "Other" }
+			{ description = "Toggle touch screen", group = "Other" }
 		},
 		{
 			{ env.mod }, "6", function()
@@ -642,18 +630,6 @@ function hotkeys:init(args)
 				end,
 			{ description = "Notify Test", group = "Other" }
 		},
-		{
-			{ env.mod }, "8", function()
-				awful.spawn.with_shell("touch_toggle");
-			end,
-			{ description = "Toggle touch screen", group = "Other" }
-		},
-		{
-			{ env.mod }, "9", function()
-				client.focus:move_to_screen()
-			end,
-			{ description = "Notify Test", group = "Other" }
-		}
 	}
 
 	-- Client keys
@@ -699,10 +675,7 @@ function hotkeys:init(args)
 			{ env.mod }, "o", function ()
 					if client.focus.floating
 					then
-					  client.focus.width = 950
-					  client.focus.height = 600
-					  client.focus.x = 950
-					  client.focus.y = 550
+						awful.placement.bottom_right(client.focus)
 					end
 				end,
 			{ description = "Resize then move scratchpad to right bottom", group = "Client keys" }
@@ -711,34 +684,16 @@ function hotkeys:init(args)
 			{ env.mod }, "i", function ()
 					if client.focus.floating
 					then
-					  client.focus.width = 950
-					  client.focus.height = 600
-					  client.focus.x = 10
-					  client.focus.y = 550
+						awful.placement.bottom_left(client.focus)
 					end
 				end,
 			{ description = "Resize then move scratchpad to left bottom", group = "Client keys" }
 		},
 		{
-			{ env.mod }, "-",function ()
-					if client.focus.floating
-					then
-					  client.focus.width = 640
-					  client.focus.height = 480
-					  client.focus.x = 1200
-					  client.focus.y = 50
-					end
-				end,
-			{ description = "Resize then move scratchpad to right top", group = "Client keys" }
-		},
-		{
 			{ env.mod }, "9",function ()
 					if client.focus.floating
 					then
-					  client.focus.width = 950
-					  client.focus.height = 600
-					  client.focus.x = 10
-					  client.focus.y = 20
+						awful.placement.top_left(client.focus)
 					end
 				end,
 			{ description = "Resize then move scratchpad to left top", group = "Client keys" }
@@ -747,10 +702,7 @@ function hotkeys:init(args)
 			{ env.mod }, "0",function ()
 					if client.focus.floating
 					then
-					  client.focus.width = 950
-					  client.focus.height = 600
-					  client.focus.x = 950
-					  client.focus.y = 20
+						awful.placement.top_right(client.focus)
 					end
 				end,
 			{ description = "Resize then move scratchpad to right top", group = "Client keys" }

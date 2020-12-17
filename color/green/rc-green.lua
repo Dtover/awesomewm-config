@@ -175,10 +175,6 @@ awful.screen.connect_for_each_screen(
 		-- wallpaper
 		env.wallpaper(s)
 
-		-- tags
-		--awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8" }, s, awful.layout.layouts[2])
-		awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "TagQ", "TagW", "TagE", "TagR" }, s, layoutseq )
-
 		-- layoutbox widget
 		layoutbox[s] = redflat.widget.layoutbox({ screen = s })
 
@@ -193,43 +189,64 @@ awful.screen.connect_for_each_screen(
 		-- panel wibox
 		s.panel = awful.wibar({ position = "bottom", screen = s, height = beautiful.panel_height or 36 })
 
-		-- add widgets to the wibox
-		s.panel:setup {
-			layout = wibox.layout.align.horizontal,
-			{ -- left widgets
-				layout = wibox.layout.fixed.horizontal,
-
-				env.wrapper(layoutbox[s], "layoutbox", layoutbox.buttons),
-				separator,
-				--env.wrapper(mymenu.widget, "mainmenu", mymenu.buttons),
-				--separator,
-				env.wrapper(taglist[s], "taglist"),
-				separator,
-				--s.mypromptbox,
-				env.wrapper(tasklist[s], "tasklist"),
-			},
-			{ -- middle widget
+		-- assign widgets on two screen's panel
+		if s == screen[1] then
+			-- tags
+			awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "TagQ", "TagW", "TagE", "TagR" }, s, layoutseq )
+			-- add widgets to the wibox
+			s.panel:setup {
 				layout = wibox.layout.align.horizontal,
-				--expand = "outside",
-				nil,
-				--env.wrapper(tasklist[s], "tasklist"),
-			},
-			{ -- right widgets
-				layout = wibox.layout.fixed.horizontal,
-				separator,
-				env.wrapper(sysmon.widget.cpuram, "cpuram", sysmon.buttons.cpuram),
-				separator,
-				env.wrapper(volume.widget, "volume", volume.buttons),
-				separator,
-				--env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
-				--env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
-				env.wrapper(textclock.widget, "textclock"),
-				separator,
-				env.wrapper(sysmon.widget.battery, "battery"),
-				separator,
-				env.wrapper(tray.widget, "tray", tray.buttons),
-			},
-		}
+				{ -- left widgets
+					layout = wibox.layout.fixed.horizontal,
+					env.wrapper(layoutbox[s], "layoutbox", layoutbox.buttons),
+					separator,
+					env.wrapper(taglist[s], "taglist"),
+					separator,
+					env.wrapper(tasklist[s], "tasklist"),
+				},
+				{ -- middle widget
+					layout = wibox.layout.align.horizontal,
+					--expand = "outside",
+					nil,
+				},
+				{ -- right widgets
+					layout = wibox.layout.fixed.horizontal,
+					separator,
+					env.wrapper(sysmon.widget.cpuram, "cpuram", sysmon.buttons.cpuram),
+					separator,
+					env.wrapper(volume.widget, "volume", volume.buttons),
+					separator,
+					env.wrapper(textclock.widget, "textclock"),
+					separator,
+					env.wrapper(sysmon.widget.battery, "battery"),
+					separator,
+					env.wrapper(tray.widget, "tray", tray.buttons),
+				},
+			}
+		else
+			-- tags
+			awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "TagQ", "TagW", "TagE", "TagR"  }, s, la[3] )
+			s.panel:setup {
+				layout = wibox.layout.align.horizontal,
+				{ -- left widgets
+					layout = wibox.layout.fixed.horizontal,
+					env.wrapper(layoutbox[s], "layoutbox", layoutbox.buttons),
+					separator,
+					env.wrapper(taglist[s], "taglist"),
+					separator,
+					env.wrapper(tasklist[s], "tasklist"),
+				},
+				{ -- middle widget
+					layout = wibox.layout.align.horizontal,
+					nil,
+				},
+				{ -- right widgets
+					layout = wibox.layout.fixed.horizontal,
+					separator,
+					env.wrapper(textclock.widget, "textclock"),
+				},
+			}
+		end
 	end
 )
 

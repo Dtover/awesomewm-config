@@ -114,11 +114,17 @@ function rules:init(args)
 		},
 		{
 			rule = { name = "scratchpadd" },
-			properties = { floating = true, x = 950, y = 550, width = 950, height = 600 }
+			properties = { floating = true, width = 950, height = 600 },
+			callback = function(c)
+				awful.placement.bottom_right(c, nil)
+			end
 		},
 		{
 			rule = { class = "mpv" },
-			properties = { floating = true, x = 1200, y = 50, width = 640, height = 480 }
+			properties = { floating = true, width = 640, height = 480 },
+			callback = function(c)
+				awful.placement.top_right(c, nil)
+			end
 		},
 		{
 			rule = { class = "Sxiv", instance = "bgp" },
