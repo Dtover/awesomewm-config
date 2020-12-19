@@ -46,7 +46,7 @@ function env:init(args)
 	self.iconpick_2 = args.iconpick_2 or "iconpick02"
 	self.rofilauncher = args.rofilauncher or "launcher"
 	self.i3lock = args.i3lock or "i3lock-fancy"
-	self.betterlock = args.betterlock or "btlock"
+	self.betterlock = args.betterlock or "btlockm"
 
 	-- boolean defaults is pain
 	self.sloppy_focus = args.sloppy_focus or false

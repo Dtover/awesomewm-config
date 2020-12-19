@@ -12,6 +12,12 @@ local timer = require("gears.timer")
 
 local redflat = require("redflat")
 
+if screen:count() == 2 then
+	screen_height = 720
+else
+	screen_height = 0
+end
+
 -- Initialize tables and vars for module
 -----------------------------------------------------------------------------------------------------------------------
 local desktop = {}
@@ -19,7 +25,7 @@ local desktop = {}
 -- desktop aliases
 local system = redflat.system
 local read = redflat.util.read
-local wa = mouse.screen.workarea
+local wa = screen[1].workarea
 
 -- Desktop widgets
 -----------------------------------------------------------------------------------------------------------------------
@@ -107,7 +113,7 @@ function desktop:init(args)
 
 	local calendar = {
 		args     = { timeout = 60 },
-		geometry = { x = wa.width - cwidth, y = cy, width = cwidth, height = cheight }
+		geometry = { x = wa.width - cwidth, y = cy + screen_height, width = cwidth, height = cheight }
 	}
 
 	-- construct layout
@@ -158,8 +164,8 @@ function desktop:init(args)
 	calendar.body = redflat.desktop.calendar(calendar.args, calendar.style)
 
 	-- calculate geometry
-	local wibox_height = 800
-	local wibox_x = 200
+	local wibox_height = 600
+	local wibox_x = 780
 	main.geometry = {
 		x = wibox_x, y = wa.y + (wa.height - wibox_height) / 2,
 		width = wa.width - wibox_x, height = wibox_height

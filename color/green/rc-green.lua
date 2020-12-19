@@ -190,7 +190,7 @@ awful.screen.connect_for_each_screen(
 		s.panel = awful.wibar({ position = "bottom", screen = s, height = beautiful.panel_height or 36 })
 
 		-- assign widgets on two screen's panel
-		if s == screen[1] then
+		if s == screen.primary then
 			-- tags
 			awful.tag({ "Tag1", "Tag2", "Tag3", "Tag4", "TagQ", "TagW", "TagE", "TagR" }, s, layoutseq )
 			-- add widgets to the wibox
@@ -252,13 +252,13 @@ awful.screen.connect_for_each_screen(
 
 -- Desktop widgets
 -----------------------------------------------------------------------------------------------------------------------
---if not lock.desktop then
-	--local desktop = require("color.green.desktop-config") -- load file with desktop widgets configuration
-	--desktop:init({
-		--env = env,
-		--buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
-	--})
---end
+if not lock.desktop then
+	local desktop = require("color.green.desktop-config") -- load file with desktop widgets configuration
+	desktop:init({
+		env = env,
+		buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
+	})
+end
 
 -- Auto run
 -----------------------------------------------------------------------------------------------------------------------

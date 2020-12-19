@@ -65,7 +65,7 @@ theme.path = awful.util.get_configuration_dir() .. "themes/green"
 --------------------------------------------------------------------------------
 theme.panel_height = 38 -- panel height
 --theme.wallpaper    = theme.path .. "/wallpaper/Boy_left1.png"
-theme.wallpaper    = { theme.path .. "/wallpaper/grey_1920x1200.png", theme.path .. "/wallpaper/wallpaper_right.png" }
+theme.wallpaper    = { theme.path .. "/wallpaper/wukong_left.png", theme.path .. "/wallpaper/wukong_right.png" }
 
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
