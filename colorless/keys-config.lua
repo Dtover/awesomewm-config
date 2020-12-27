@@ -15,7 +15,7 @@ local hotkeys = { mouse = {}, raw = {}, keys = {}, fake = {} }
 
 -- key aliases
 local apprunner = redflat.float.apprunner
---local appswitcher = redflat.float.appswitcher
+local appswitcher = redflat.float.appswitcher
 local current = redflat.widget.tasklist.filter.currenttags
 local allscr = redflat.widget.tasklist.filter.allscreen
 local laybox = redflat.widget.layoutbox
@@ -245,30 +245,30 @@ function hotkeys:init(args)
 
 	-- Appswitcher
 	------------------------------------------------------------
-	--local appswitcher_keys_move = {
-		--{
-			--{ env.mod }, "a", function() appswitcher:switch() end,
-			--{ description = "Select next app", group = "Navigation" }
-		--},
-		--{
-			--{ env.mod, "Shift" }, "a", function() appswitcher:switch({ reverse = true }) end,
-			--{ description = "Select previous app", group = "Navigation" }
-		--},
-	--}
+	local appswitcher_keys_move = {
+		{
+			{ env.mod, "Control" }, "Tab", function() appswitcher:switch() end,
+			{ description = "Select next app", group = "Navigation" }
+		},
+		{
+			{ env.mod, "Control", "Shift" }, "Tab", function() appswitcher:switch({ reverse = true }) end,
+			{ description = "Select previous app", group = "Navigation" }
+		},
+	}
 
-	--local appswitcher_keys_action = {
-		--{
-			--{ env.mod }, "Super_L", function() appswitcher:hide() end,
-			--{ description = "Activate and exit", group = "Action" }
-		--},
-		--{
-			--{}, "Escape", function() appswitcher:hide(true) end,
-			--{ description = "Exit", group = "Action" }
-		--},
-	--}
+	local appswitcher_keys_action = {
+		{
+			{ env.mod }, "Super_L", function() appswitcher:hide() end,
+			{ description = "Activate and exit", group = "Action" }
+		},
+		{
+			{}, "Escape", function() appswitcher:hide(true) end,
+			{ description = "Exit", group = "Action" }
+		},
+	}
 
-	--appswitcher:set_keys(awful.util.table.join(appswitcher.keys.move, appswitcher_keys_move), "move")
-	--appswitcher:set_keys(awful.util.table.join(appswitcher.keys.action, appswitcher_keys_action), "action")
+	appswitcher:set_keys(awful.util.table.join(appswitcher.keys.move, appswitcher_keys_move), "move")
+	appswitcher:set_keys(awful.util.table.join(appswitcher.keys.action, appswitcher_keys_action), "action")
 
 
 	-- Emacs like key sequences
@@ -485,13 +485,13 @@ function hotkeys:init(args)
 			{ description = "Switch titlebar view of all clients", group = "Titlebar" }
 		},
 		--{
-			--{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
+			--{ env.mod, "Control" }, "Tab", nil, function() appswitcher:show({ filter = current }) end,
 			--{ description = "Switch to next with current tag", group = "Application switcher" }
 		--},
-		--{
-			--{ env.mod, "Shift" }, "a", nil, function() appswitcher:show({ filter = allscr }) end,
-			--{ description = "Switch to next through all tags", group = "Application switcher" }
-		--},
+		{
+			{ env.mod,  "Control" }, "Tab", nil, function() appswitcher:show({ filter = allscr }) end,
+			{ description = "Switch to next through all tags", group = "Application switcher" }
+		},
 		{
 			{ env.mod }, "`", awful.tag.history.restore,
 			{ description = "Go previos tag", group = "Tag navigation" }
@@ -570,7 +570,13 @@ function hotkeys:init(args)
 			{ description = "Switch between the screens", group = "Main" }
 		},
 		{
-			{ env.mod, "Shift" }, "a", function() client.focus:move_to_screen() end,
+			{ env.mod, "Shift" }, "a", function()
+				if client.focus ~= nil then
+					client.focus:move_to_screen()
+				else
+					awful.screen.focus_relative(1)
+				end
+			end,
 			{ description = "Move client to another screen", group = "Main" }
 		},
 		{
@@ -635,21 +641,21 @@ function hotkeys:init(args)
 	-- Client keys
 	--------------------------------------------------------------------------------
 	self.raw.client = {
-		--{
-			--{ env.mod }, "f", function(c) c.fullscreen = not c.fullscreen; c:raise() end,
-			--{ description = "Toggle fullscreen", group = "Client keys" }
-		--},
-    --awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              --{description = "increase the number of master clients", group = "layout"}),
-    --awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              --{description = "decrease the number of master clients", group = "layout"}),
 		{
 			{ env.mod, "Control" }, "h", function() awful.tag.incmwfact( -0.05 ) end,
-			{ descritption = "increase the number of master clients", group = "Client keys" },
+			{ descritption = "decrease the number of master clients", group = "Client keys" },
 		},
 		{
 			{ env.mod, "Control" }, "l", function() awful.tag.incmwfact( 0.05 ) end,
 			{ descritption = "increase the number of master clients", group = "Client keys" },
+		},
+		{
+			{ env.mod, "Control" }, "j", function() awful.client.incwfact( 0.05 ) end,
+			{ descritption = "increase the number of master clients", group = "Client keys" },
+		},
+		{
+			{ env.mod, "Control" }, "k", function() awful.client.incwfact( -0.05 ) end,
+			{ descritption = "decrease the number of master clients", group = "Client keys" },
 		},
 		{
 			{ env.mod, "Shift" }, "Escape", function(c) c:kill() end,
