@@ -109,6 +109,10 @@ function rules:init(args)
 			properties = { screen = 1, tag = "Tag4" }
 		},
 		{
+			rule = { class = "zy" },
+			properties = { screen = 1, tag = "TagQ" }
+		},
+		{
 			rule = { class = "uTools" },
 			properties = { floating = true }
 		},

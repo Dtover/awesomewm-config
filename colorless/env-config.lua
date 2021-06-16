@@ -37,7 +37,7 @@ function env:init(args)
 	self.brave = args.brave or "brave"
 	self.musicplayer = args.musicplayer or "netease-cloud-music"
 	self.idea = args.idea or "/opt/idea-IU-202.6948.69/bin/idea.sh"
-	self.typora = args.typora or "typora /home/dtover/Typora"
+	self.typora = args.typora or "typora"
 	self.ssh = args.ssh or "st -e ssh root@118.178.123.233"
 	self.bgpselector = args.bgpselector or "bgp"
 	self.todo = args.todo or "st -n todo -e todo"
@@ -47,6 +47,7 @@ function env:init(args)
 	self.rofilauncher = args.rofilauncher or "launcher"
 	self.i3lock = args.i3lock or "i3lock-fancy"
 	self.betterlock = args.betterlock or "btlock"
+	self.zyplayer = args.zyplayer or "zyplayer"
 
 	-- boolean defaults is pain
 	self.sloppy_focus = args.sloppy_focus or false

@@ -306,6 +306,10 @@ function hotkeys:init(args)
 			{}, "a", function() awful.spawn(env.typora, false) end,
 			{ description = "Run Typora", group = "Run app" }
 		},
+		{
+			{}, "z", function() awful.spawn(env.zyplayer, false) end,
+			{ description = "Run Zyplayer", group = "Run app" }
+		},
 	}
 
 	-- application kill actions,
